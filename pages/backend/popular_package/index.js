@@ -66,7 +66,7 @@ const Index = (props) => {
   }
 
   const handleChangeOrder = (values) =>{
-    setPopular(values);
+    setPopular({...popular,rows :values});
     if(values.length != 0){
       var arr = [];
       values.forEach((val,index) => {
@@ -74,7 +74,7 @@ const Index = (props) => {
       });
 
       api.updatePopularOrder({orders : arr}).then(res =>{
-        const data = res.data;
+        // const data = res.data;
         // console.log(data);
       })
       .catch(err =>{

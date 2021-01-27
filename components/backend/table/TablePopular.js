@@ -28,7 +28,8 @@ const TablePopular = memo((props) => {
   },[]);
 
   const handleChangeOrder = (values) =>{
-    // setBook(values);
+    alert('ss')
+    setPopular({...popular,rows :values});
     // if(values.length != 0){
     //   var arr = [];
     //   values.forEach((val,index) => {

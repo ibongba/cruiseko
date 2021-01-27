@@ -46,6 +46,8 @@ const models = {
     BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
     BookingAddon : require('./booking/booking_addon.model')(sequelize,Sequelize),
 
+    TransferSlip : require('./booking/transfer_slip.model')(sequelize,Sequelize),
+
     Location : require('./location/location.model')(sequelize,Sequelize),
 
     ProductAddon : require('./products/products_addon.model')(sequelize,Sequelize),

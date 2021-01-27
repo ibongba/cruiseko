@@ -63,7 +63,7 @@ exports.deleteCate = async(req,res,next)=>{
 exports.getAllProduct = async(req,res,next)=>{
   // const cate_key = req.params.key
   var {page=1,limit,no_limit,cate_key,exclude_product_id} = req.query;
-  var {orderby='createdAt' ,op='desc'} = req.query;
+  var {orderby='order' ,op='asc'} = req.query;
   try{
     const include = [
       {model : Product}
@@ -145,7 +145,7 @@ exports.updateProductOrder = async(req,res,next)=>{
         task.push(RecommendProduct.update({order : val.order },{where : {id : val.id}}))
     } )
     await Promise.all(task);
-    request.ok(res);
+    res.json({success:true})
   }
   catch(err){
       next(err);

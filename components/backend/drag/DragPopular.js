@@ -17,12 +17,12 @@ class DragPopular extends React.Component {
   }
 
   onDragEnd = (fromIndex, toIndex) => {
-    const setProduct = this.props.handleCateChange;
-    const data  = this.props.products.rows;
+    const setProduct = this.props.handleChangeOrder;
+    const data  = [...this.props.products.rows];
     const item = data.splice(fromIndex, 1)[0];
     data.splice(toIndex, 0, item);
+    console.log('data',data)
     // this.props.setCate([]);
-    setProduct([])
     setProduct(data);
   }
 

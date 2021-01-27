@@ -1,7 +1,7 @@
 const {Boat,BoatCategory,BoatImage,sequelize} = require('../../db')
 const tools = require('../../helper/tools')
-const errors = require('../../errors')
 const {createProduct} = require('../products.cont')
+const errors = require('../../errors')
 const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
