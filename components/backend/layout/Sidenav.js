@@ -101,7 +101,7 @@ const Sidenav = (props) => {
                     </li>
                   )
                 }
-                {
+                {/* {
                   (admin.role_id == 0 || checkMenu(2)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="popular_package">
                       <Link href="/backend/popular_package">
@@ -109,15 +109,14 @@ const Sidenav = (props) => {
                           <i className="fa fa-fw fa-calendar-check-o"></i>
                           <span className="nav-link-text">
                             Popular Package 
-                            {/* {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null} */}
                           </span>
                         </a>
                       </Link>
                     </li>
                   )
-                }
+                } */}
                 {
-                  (admin.role_id == 0 || checkMainMenu(3,5)) && (
+                  (admin.role_id == 0 || checkMainMenu(2,5)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Package">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Package" || page_name == "Package Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseCategory" data-parent="#Category">
                         <i className="fa fa-fw fa-bug"></i>
@@ -125,7 +124,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Package" || page_name == "Package Category") ? 'show' : ''}`} id="collapseCategory">
                         {
-                          (admin.role_id == 0 || checkMenu(3)) && (
+                          (admin.role_id == 0 || checkMenu(2)) && (
                             <li>
                               <Link href="/backend/package">
                                 <a>Package</a>
@@ -134,7 +133,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(4)) && (
+                          (admin.role_id == 0 || checkMenu(3)) && (
                             <li>
                               <Link href="/backend/package_category">
                                 <a>Package Category</a>
@@ -143,10 +142,19 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(5)) && (
+                          (admin.role_id == 0 || checkMenu(4)) && (
                             <li>
                               <Link href="/backend/location">
                                 <a>Package Location</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(5)) && (
+                            <li>
+                              <Link href="/backend/package/popular">
+                                <a>Package Popular</a>
                               </Link>
                             </li>
                           )

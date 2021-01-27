@@ -106,10 +106,10 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Popular Package"  page_name="Package">
+      <Layout title="Package Popular"  page_name="Package">
         <div className="row justify-content-start">
           <div className="col-6">
-            <h4>Popular Package</h4>
+            <h4>Package Popular</h4>
           </div>
           <div className="col-6">
             <div className="text-right">

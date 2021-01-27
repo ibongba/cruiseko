@@ -31,10 +31,10 @@ exports.initPermission = async() =>{
   try{
     const data = [
       {name : 'Bookings' , key : 'bookings' },
-      {name : 'Popular Package' , key : 'popular_package' },
       {name : 'Package' , key : 'package' },
       {name : 'Package Category' , key : 'package_category'},
       {name : 'Package Location' , key : 'package_location'},
+      {name : 'Package Popular' , key : 'package_popular' },
       {name : 'Boat' , key : 'boat' },
       {name : 'Boat Category' , key : 'boat_category'},
       {name : 'Pages' , key : 'pages' },
