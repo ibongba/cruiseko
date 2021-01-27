@@ -101,5 +101,9 @@ module.exports = {
             }, time);
         });
         
-    }
+    },
+    toDateISO : (_date) =>{
+        var date = new Date(_date);
+        return `${date.getFullYear()}-${pad(date.getMonth()+1,2) }-${pad(date.getDate(),2) }`
+    },
 }
