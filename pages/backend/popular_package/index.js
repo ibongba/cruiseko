@@ -11,20 +11,7 @@ const Index = (props) => {
   const [popular, setPopular] = useState();
   const [loading, setLoading] = useState(false);
 
-  const fecthPackage = (params={}) => {
-    setLoading(true);
-    api.getPackage()
-    .then(res=>{
-      const data = res.data;
-      console.log('data',data)
-      setPackage(data);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.log(err.response);
-      setLoading(false);
-    })
-  }
+  
 
 
   const fecthPopular = (params={}) => {
@@ -43,12 +30,34 @@ const Index = (props) => {
       console.log(err.response);
     })
   }
+
+  const fecthPackage = (params={}) => {
+    setLoading(true);
+    api.getPackage().then(res=>{
+      const data = res.data;
+      if(popular && popular.count > 0) {
+        popular.rows.forEach((v2)=>{
+          var index = data.rows.findIndex((r)=>r.id==v2.product.id)
+          if(index != -1)
+          data.rows.splice(index,1)
+        })
+      }
+      setPackage(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+      setLoading(false);
+    })
+  }
   
 
   useEffect(() => {
     fecthPopular();
-    fecthPackage();
   },[]);
+  useEffect(() => {
+    fecthPackage();
+  },[popular]);
 
 
   const handleAdd = (id) => {
