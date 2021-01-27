@@ -75,14 +75,14 @@ exports.getAllProduct = async(req,res,next)=>{
     var order = [[orderby,op]];
     var options = {where,include,order}
 
-    if(!isNaN(page) && page > 1){
-      options.offset = (page-1)*limit;
+    // if(!isNaN(page) && page > 1){
+    //   options.offset = (page-1)*limit;
       
-      options.limit = limit;
-    }
-    if(!isNaN(limit)){
-        options.limit = parseInt(limit);
-    }
+    //   options.limit = limit;
+    // }
+    // if(!isNaN(limit)){
+    //     options.limit = parseInt(limit);
+    // }
 
     if(no_limit == 1){
       delete options.no_limit
@@ -105,6 +105,10 @@ exports.addProduct = async (req,res,next)=>{
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 
+    if(await RecommendProduct.findOne({where : {product_id,cate_key}}) ){
+      throw new DefaultError(errors.DUPLICATED_EMAIL);
+    }
+
     await RecommendProduct.create({product_id,cate_key})
     res.json({success:true})
   }
@@ -121,5 +125,23 @@ exports.deleteProduct = async (req,res,next)=>{
   }
   catch(err){
     next(err);
+  }
+}
+
+exports.updateProductOrder = async(req,res,next)=>{
+  let {orders} = req.body;
+  try{
+    if(!orders){
+      throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+    let task = []
+    orders.forEach((val)=>{
+        task.push(RecommendProduct.update({order : val.order },{where : {id : val.id}}))
+    } )
+    await Promise.all(task);
+    request.ok(res);
+  }
+  catch(err){
+      next(err);
   }
 }

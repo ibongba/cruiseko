@@ -5,6 +5,10 @@ module.exports = (sequelize, type) => {
       primaryKey: true,
       autoIncrement: true
     },
+    order : {
+      type : type.INTEGER,
+      defaultValue : 0
+    },
     cate_key : type.STRING,
     product_id : type.INTEGER
     // deleted : {

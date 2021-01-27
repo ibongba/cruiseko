@@ -10,6 +10,7 @@ protect_method.forEach(val => router[val]('/*',mw.jwt('admin')))
 
 router.get('/products',rec.getAllProduct)
 router.post('/products',rec.addProduct)
+router.post('/products/order',rec.updateProductOrder)
 router.delete('/products/:id',rec.deleteProduct)
 
 
