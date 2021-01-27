@@ -108,8 +108,8 @@ const Index = (props) => {
             </div>
           </div>
         </div>
-        <div className="divider"></div>
-        <div>
+        {/* <div className="divider"></div> */}
+        <div className="mt-5">
           <DragPopular products={popular} handleChangeOrder={handleChangeOrder}  delProduct={delProduct} />
         </div>
 
