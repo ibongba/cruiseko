@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import DragPopular from '../../../components/backend/drag/DragPopular';
 import Layout from '../../../components/backend/layout/Layout';
 import ModalPackage from '../../../components/backend/popular/ModalPackage';
-import TablePopular from '../../../components/backend/table/TablePopular';
-import api from '../../../utils/api-admin'
-import DragPopular from '../../../components/backend/drag/DragPopular'
+import api from '../../../utils/api-admin';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -11,26 +10,13 @@ const Index = (props) => {
   const [popular, setPopular] = useState();
   const [loading, setLoading] = useState(false);
 
-  const fecthPackage = (params={}) => {
-    setLoading(true);
-    api.getPackage()
-    .then(res=>{
-      const data = res.data;
-      console.log('data',data)
-      setPackage(data);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.log(err.response);
-      setLoading(false);
-    })
-  }
+  
 
 
   const fecthPopular = (params={}) => {
 
     params.cate_key = "popular";
-
+    params.full_detail = 0;
     setLoading(true);
     api.getPopularPackage(params)
     .then(res=>{
@@ -43,12 +29,34 @@ const Index = (props) => {
       console.log(err.response);
     })
   }
+
+  const fecthPackage = (params={}) => {
+    setLoading(true);
+    api.getPackage().then(res=>{
+      const data = res.data;
+      if(popular && popular.count > 0) {
+        popular.rows.forEach((pops)=>{
+          var index = data.rows.findIndex((val) => val.id == pops.product.id)
+          if(index != -1)
+          data.rows.splice(index,1)
+        })
+      }
+      setPackage(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+      setLoading(false);
+    })
+  }
   
 
   useEffect(() => {
     fecthPopular();
-    fecthPackage();
   },[]);
+  useEffect(() => {
+    fecthPackage();
+  },[popular]);
 
 
   const handleAdd = (id) => {
@@ -97,10 +105,10 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Bookings" page_name="Bookings">
+      <Layout title="Package Popular"  page_name="Package">
         <div className="row justify-content-start">
           <div className="col-6">
-            <h4>Popular Package</h4>
+            <h4>Package Popular</h4>
           </div>
           <div className="col-6">
             <div className="text-right">
@@ -108,8 +116,8 @@ const Index = (props) => {
             </div>
           </div>
         </div>
-        <div className="divider"></div>
-        <div>
+        {/* <div className="divider"></div> */}
+        <div className="mt-5">
           <DragPopular products={popular} handleChangeOrder={handleChangeOrder}  delProduct={delProduct} />
         </div>
 
