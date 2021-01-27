@@ -101,20 +101,6 @@ const Sidenav = (props) => {
                     </li>
                   )
                 }
-                {/* {
-                  (admin.role_id == 0 || checkMenu(2)) && (
-                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="popular_package">
-                      <Link href="/backend/popular_package">
-                        <a className="nav-link">
-                          <i className="fa fa-fw fa-calendar-check-o"></i>
-                          <span className="nav-link-text">
-                            Popular Package 
-                          </span>
-                        </a>
-                      </Link>
-                    </li>
-                  )
-                } */}
                 {
                   (admin.role_id == 0 || checkMainMenu(2,5)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Package">
