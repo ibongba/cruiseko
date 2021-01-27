@@ -1,6 +1,7 @@
 const {Product,RecommendCate,RecommendProduct} = require('../db')
 const errors = require('../errors')
 const {DefaultError} = errors
+const {Op} = require('sequelize')
 
 exports.getAllCate = async(req,res,next)=>{
   try{
@@ -61,7 +62,7 @@ exports.deleteCate = async(req,res,next)=>{
 
 exports.getAllProduct = async(req,res,next)=>{
   // const cate_key = req.params.key
-  var {page=1,limit=25,no_limit,cate_key} = req.query;
+  var {page=1,limit=25,no_limit,cate_key,exclude_product_id} = req.query;
   var {orderby='createdAt' ,op='desc'} = req.query;
   try{
     const include = [
@@ -72,6 +73,11 @@ exports.getAllProduct = async(req,res,next)=>{
       where.cate_key = cate_key
     }
 
+    if(exclude_product_id){
+      if(!Array.isArray(exclude_product_id)) exclude_product_id = [exclude_product_id]
+      where.product_id = {[Op.ne] : exclude_product_id}
+    }
+
     var order = [[orderby,op]];
     var options = {where,include,order}
 
@@ -80,9 +86,9 @@ exports.getAllProduct = async(req,res,next)=>{
       
     //   options.limit = limit;
     // }
-    // if(!isNaN(limit)){
-    //     options.limit = parseInt(limit);
-    // }
+    if(!isNaN(limit)){
+        options.limit = parseInt(limit);
+    }
 
     if(no_limit == 1){
       delete options.no_limit

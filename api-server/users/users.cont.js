@@ -213,8 +213,9 @@ exports.updateProfile = async(req,res,next) => {
     var data= req.body;
     const actor = req.user
     data.id = actor.id
+    var files = req.files || {}
     try{
-        await updateUser(actor,data)
+        await updateUser(actor,data,files)
         res.json({success:true})
     }
     catch(err){
@@ -305,7 +306,7 @@ exports.genUserId = async(req,res,next)=>{
 
 
 
-async function updateUser  (actor,data){
+async function updateUser  (actor,data,files={}){
     var {id,password,approve_status,license_expired_date,with_next} = data;
 
     if(!id){
@@ -314,6 +315,18 @@ async function updateUser  (actor,data){
 
     delete data.id;
     delete data.username
+
+    if(files.image_logo && files.image_logo.name){
+        //console.log(req.files);
+        let file = files.image_logo;
+        let fileName = await tools.moveFileWithPath(file,'images')
+        data.image_logo = tools.genFileUrl(fileName,'images')
+    }
+    if(files.image_license && files.image_license.name){
+        let file = files.image_license;
+        let fileName = await tools.moveFileWithPath(file,'images')
+        data.image_license = tools.genFileUrl(fileName,'images')
+    }
 
     if(password){
         data.password = await bcrypt.hash(password, saltRounds)

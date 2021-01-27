@@ -12,10 +12,10 @@ const {calPackagePrice,calDuration} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25,orderby='createdAt' ,op='desc',user_id,payment_status} = req.query
+  var {page=1,limit=25,orderby='createdAt' ,op='desc',user_id,payment_status,start_date,end_date} = req.query
   const user = req.user
   try{
-    var where = {}
+    var where = {[Op.and] : []}
 
 
     if(user_id){
@@ -26,6 +26,18 @@ exports.getAll = async(req,res,next)=>{
       where.user_id = user_id;
     }
     if(payment_status) where.payment_status = payment_status;
+
+    if(start_date){
+      // start_date = new Date(start_date)
+      // start_date.setDate(start_date.getDate()-1)
+      where[Op.and].push({createdAt : {[Op.gte] : start_date} })
+    }
+    if(end_date){
+      end_date = new Date(end_date)
+      end_date.setDate(end_date.getDate() + 1)
+      end_date = tools.toDateISO(end_date)
+      where[Op.and].push({createdAt : {[Op.lt] : end_date} })
+    }
 
 
     var order = [[orderby,op]];

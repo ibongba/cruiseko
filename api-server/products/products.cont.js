@@ -420,6 +420,57 @@ exports.duplicateProduct = async(req,res,next)=>{
   }
 }
 
+
+exports.getRelatedProduct = async(req,res,next)=>{
+  var {limit=12} = req.query 
+  const product_id = req.params.id
+  try{
+
+    const pb = await ProductBoat.findOne({where : { product_id},include :  [{model : Boat , required:true}]})
+    var data = []
+    if(pb){
+      var where = {deleted : 0}
+      var where_date = {}
+
+
+      const now = new Date();
+      // Query for today price
+      where_date[Op.and] = [
+        {start_date : {[Op.lte] : now}  },
+        {end_date : {[Op.gte] : now}  }
+      ]
+
+      const price_include = [
+        {model : PriceCompanyType , include : [
+          {model : PriceDateDetail}
+        ]}
+      ]
+      const boat_include = [
+        {model : Boat,required:true ,where : {company : pb.boat.company},}
+      ]
+  
+      
+      const include = [
+        {model : PriceDate ,include :price_include,where : where_date,required:false },
+        // {model : ProductImage , attributes:['id','image','type','order']},
+        // {model : Event},
+        {model : ProductBoat, include : boat_include/* ,required:true */ },
+        {model : ProductCategory},
+        {model : Location , as :'pickup' },
+        // {model : Review ,separate: true, attributes :  [[sequelize.fn('AVG', sequelize.col('rating')),'rating']]}
+      ]
+
+      if(!isNaN(limit)) limit = parseInt(limit)
+
+      data = await Product.findAll({where , include ,limit})
+    }
+    res.json(data)
+  }
+  catch(err){
+    next(err);
+  }
+}
+
 async function handleProductImages (files){
   var images_urls = []
   if(files.images){

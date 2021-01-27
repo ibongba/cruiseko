@@ -19,4 +19,6 @@ router.put('/:id',product.update)
 
 router.delete('/:id',product.delete)
 
+router.get('/:id/related',product.getRelatedProduct)
+
 module.exports = router;
