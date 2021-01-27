@@ -131,12 +131,12 @@ export default {
     delBlogCate : (id) => service.delete(`/blog/category/${id}`),
 
 
-     //Location
-     getLocation : () => service.get(`/location`),
-     getLocationOne : (id) => service.get(`/location/${id}`),
-     insertLocation : (data) => service.post(`/location`,data),
-     updateLocation : (data, id) => service.put(`/location/${id}`,data),
-     delLocation : (id) => service.delete(`/location/${id}`),
+    //Location
+    getLocation : () => service.get(`/location`),
+    getLocationOne : (id) => service.get(`/location/${id}`),
+    insertLocation : (data) => service.post(`/location`,data),
+    updateLocation : (data, id) => service.put(`/location/${id}`,data),
+    delLocation : (id) => service.delete(`/location/${id}`),
  
 
      //Page
@@ -151,6 +151,12 @@ export default {
     insertPageWidget : (data) => service.post(`/pages/widgets`,data),
     updatePageWidget : (id, data) => service.put(`/pages/widgets/${id}`,data) ,
     delPageWidget : (id) => service.delete(`/pages/widgets/${id}`),
+
+    //Popular Package
+    getPopularPackage : (params) => service.get(`/recommend/products`, {params}),
+    insertPopularPackage : (data) => service.post('/recommend/products',data) ,
+    updatePopularPackage : (id, data) => service.put(`/recommend/products/${id}`,data) ,
+    delPopularPackage : (id) => service.delete(`/recommend/products/${id}`),
 
 
 }

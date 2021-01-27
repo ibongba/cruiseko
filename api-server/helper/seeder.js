@@ -31,6 +31,7 @@ exports.initPermission = async() =>{
   try{
     const data = [
       {name : 'Bookings' , key : 'bookings' },
+      {name : 'Popular Package' , key : 'popular_package' },
       {name : 'Package' , key : 'package' },
       {name : 'Package Category' , key : 'package_category'},
       {name : 'Package Location' , key : 'package_location'},
