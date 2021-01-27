@@ -155,8 +155,9 @@ export default {
     //Popular Package
     getPopularPackage : (params) => service.get(`/recommend/products`, {params}),
     insertPopularPackage : (data) => service.post('/recommend/products',data) ,
-    updatePopularPackage : (id, data) => service.put(`/recommend/products/${id}`,data) ,
     delPopularPackage : (id) => service.delete(`/recommend/products/${id}`),
+    updatePopularOrder : (data) => axios.post(`/recommend/products/order`, data),
+
 
 
 }

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import TablePage from '../../../components/backend/table/TablePage';
