@@ -18,7 +18,7 @@ module.exports = (sequelize, type) => {
   //   price : type.DECIMAL(18,2)
   },
   {
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true
   })
 
