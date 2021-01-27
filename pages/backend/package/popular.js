@@ -17,7 +17,7 @@ const Index = (props) => {
   const fecthPopular = (params={}) => {
 
     params.cate_key = "popular";
-
+    params.full_detail = 0;
     setLoading(true);
     api.getPopularPackage(params)
     .then(res=>{
