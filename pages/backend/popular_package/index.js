@@ -36,8 +36,8 @@ const Index = (props) => {
     api.getPackage().then(res=>{
       const data = res.data;
       if(popular && popular.count > 0) {
-        popular.rows.forEach((v2)=>{
-          var index = data.rows.findIndex((r)=>r.id==v2.product.id)
+        popular.rows.forEach((pops)=>{
+          var index = data.rows.findIndex((val) => val.id == pops.product.id)
           if(index != -1)
           data.rows.splice(index,1)
         })
