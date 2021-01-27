@@ -39,7 +39,7 @@
     "react-data-table-component": "^6.11.5",
     "react-datetime": "^3.0.4",
     "react-dom": "17.0.1",
-    "react-drag-listview": "^0.1.7",
+    "react-drag-listview": "^0.1.8",
     "react-dropzone": "^11.2.4",
     "react-facebook-login": "^4.1.1",
     "react-image-lightbox": "^5.1.1",
