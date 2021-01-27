@@ -16,7 +16,7 @@ const Home = (props) => {
 
   const fecthPackage = () => {
     setLodding(true);
-    api.getPackage({active : 1})
+    api.getPopularPackage({cate_key : "popular"})
     .then(res=>{
       const data = res.data;
       setPackage(data);
@@ -87,7 +87,7 @@ const Home = (props) => {
               <div className="row">
                 {
                   (packages && packages.rows) ? packages.rows.map((val, index) => (
-                    <ProductCard key={val.id} packages={val} />
+                    <ProductCard key={val.id} packages={val.product} />
                   )) : null
                 }
               </div>

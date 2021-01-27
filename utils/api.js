@@ -70,5 +70,8 @@ export default {
     insertReview : (data) => service.post('/review',data) ,
     getReviewPackage : (params) => service.get(`/review`, {params}),
 
+    //Popular Package
+    getPopularPackage : (params) => service.get(`/recommend/products`, {params}),
+
 
 }
