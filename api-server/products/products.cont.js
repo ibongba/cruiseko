@@ -462,7 +462,12 @@ exports.getRelatedProduct = async(req,res,next)=>{
 
       if(!isNaN(limit)) limit = parseInt(limit)
 
-      data = await Product.findAll({where , include ,limit})
+      const attributes = {
+        include : [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating'],[sequelize.literal(review_count_sql),'review_count']],
+        exclude : ['meta_title','meta_description','meta_keyword','meta_image']
+      }
+
+      data = await Product.findAll({where , include ,limit,attributes})
     }
     res.json(data)
   }

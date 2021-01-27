@@ -1,7 +1,11 @@
-const {Product,RecommendCate,RecommendProduct} = require('../db')
+const {sequelize,Product,RecommendCate,RecommendProduct,PriceCompanyType,
+PriceDateDetail,Boat,PriceDate,ProductBoat,ProductCategory,Location} = require('../db')
 const errors = require('../errors')
 const {DefaultError} = errors
 const {Op} = require('sequelize')
+
+const review_sql = '(select avg(rating) as rating from review where product_id = rec_products.product_id and deleted = 0 and status = 1)'
+const review_count_sql = '(select count(product_id) as rating from review where product_id = rec_products.product_id and deleted = 0 and status = 1)'
 
 exports.getAllCate = async(req,res,next)=>{
   try{
@@ -62,12 +66,64 @@ exports.deleteCate = async(req,res,next)=>{
 
 exports.getAllProduct = async(req,res,next)=>{
   // const cate_key = req.params.key
-  var {page=1,limit,no_limit,cate_key,exclude_product_id} = req.query;
+  var {page=1,limit,no_limit,cate_key,exclude_product_id,active,full_detail = 1} = req.query;
   var {orderby='order' ,op='asc'} = req.query;
   try{
-    const include = [
-      {model : Product}
+    var where_product = {}
+    var where_date = {}
+    var required_price = false;
+
+    if(active == 1){
+      where_product.publish_status = 1;
+      where_product.is_draft = 0;
+      required_price= true;
+    }
+
+    
+    const now = new Date();
+    where_date[Op.and] = [
+      {start_date : {[Op.lte] : now}  },
+      {end_date : {[Op.gte] : now}  }
     ]
+
+
+    const attributes = {
+      include : [...Object.keys(RecommendProduct.rawAttributes),[sequelize.literal(review_sql),'rating'],[sequelize.literal(review_count_sql),'review_count']],
+    }
+
+
+    const price_include = [
+      {model : PriceCompanyType , include : [
+        {model : PriceDateDetail}
+      ]}
+    ]
+    const boat_include = [
+      {model : Boat,required:true }
+    ]
+
+
+    
+    const product_include = [
+      {model : PriceDate ,include :price_include,where : where_date,required:required_price },
+      // {model : ProductImage , attributes:['id','image','type','order']},
+      // {model : Event},
+      {model : ProductBoat, include : boat_include},
+      {model : ProductCategory},
+      {model : Location , as :'pickup' },
+      // {model : Review ,separate: true, attributes :  [[sequelize.fn('AVG', sequelize.col('rating')),'rating']]}
+    ]
+    const include = [
+      {
+        model : Product ,
+        include : product_include,
+        where : where_product, 
+        required:true
+      }
+    ]
+
+    
+   
+
     var where = {}
     if(cate_key){
       where.cate_key = cate_key
@@ -79,7 +135,15 @@ exports.getAllProduct = async(req,res,next)=>{
     }
 
     var order = [[orderby,op]];
-    var options = {where,include,order}
+
+    
+
+    var options = {where,include,order,distinct : true,attributes}
+
+    if(full_detail == 0){
+      delete include[0].include
+      delete options.attributes
+    }
 
     // if(!isNaN(page) && page > 1){
     //   options.offset = (page-1)*limit;
@@ -93,6 +157,8 @@ exports.getAllProduct = async(req,res,next)=>{
     if(no_limit == 1){
       delete options.no_limit
     }
+
+
 
     const items = await RecommendProduct.findAndCountAll(options)
 
