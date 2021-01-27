@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import DragPopular from '../../../components/backend/drag/DragPopular';
 import Layout from '../../../components/backend/layout/Layout';
 import ModalPackage from '../../../components/backend/popular/ModalPackage';
-import TablePopular from '../../../components/backend/table/TablePopular';
-import api from '../../../utils/api-admin'
-import DragPopular from '../../../components/backend/drag/DragPopular'
+import api from '../../../utils/api-admin';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
