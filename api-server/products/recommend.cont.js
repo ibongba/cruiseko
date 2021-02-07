@@ -138,7 +138,7 @@ exports.getAllProduct = async(req,res,next)=>{
 
     
 
-    var options = {where,include,order,distinct : true,attributes}
+    var options = {where,include,order,distinct : true,attributes,logging:console.log}
 
     if(full_detail == 0){
       delete include[0].include

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../components/frontend/layout/Layout';
 import Banner from '../../components/frontend/product_detail/Banner';
 import MainDetail from '../../components/frontend/product_detail/MainDetail';
-import Router, {useRouter } from 'next/router';
+// import Router, {useRouter } from 'next/router';
 import api from '../../utils/api';
 import Head from 'next/head'
 
@@ -10,8 +10,8 @@ const ProductDetail = (props) => {
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState(props.product);
 
-	const router = useRouter();
-	const id = router.query.id;
+	// const router = useRouter();
+	const id = props.query.id;
 	
 
 	const fecthPackageOne = () => {
@@ -34,7 +34,7 @@ const ProductDetail = (props) => {
   }, [props.query.id])
   
 	
-	console.log('packages', packages);
+	// console.log('packages', packages,props.product);
   
   return (
     <Layout loading={loading} title={packages && packages.meta_title ? packages.meta_title : packages.name} page={'product_details'}>
@@ -76,9 +76,8 @@ const ProductDetail = (props) => {
   )
 }
 
-ProductDetail.getInitialProps = async ({query, asPath}) => {
+ProductDetail.getInitialProps = async ({query}) => {
   const BASE_LOCAL= 'http://localhost:3080'
-  const BASE = process.env.api_url || BASE_LOCAL;
   const url = query.id.split('-');
   const product_id = encodeURIComponent(url[0])
   query.id = product_id;
@@ -86,11 +85,31 @@ ProductDetail.getInitialProps = async ({query, asPath}) => {
   try {
     const response = await api.getPackageOne(product_id);
     data = response.data;
+    
   }catch (e) {
     console.log(e);
   }
 
-
-  return { product:data,query,path : asPath };
+  return { product:data,query};
 }
+
+// export async function getServerSideProps({query}) {
+//   const BASE_LOCAL= 'http://localhost:3080'
+//   const BASE = process.env.api_url || BASE_LOCAL;
+//   const url = query.id.split('-');
+//   const product_id = encodeURIComponent(url[0])
+//   query.id = product_id;
+//   var data = null;
+//   console.log('query',query)
+//   try {
+//     const response = await api.getPackageOne(product_id);
+//     data = response.data;
+    
+//   }catch (e) {
+//     throw e
+//   }
+//   return {
+//     props: { product:data,query }, // will be passed to the page component as props
+//   }
+// }
 export default ProductDetail

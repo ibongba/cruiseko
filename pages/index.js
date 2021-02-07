@@ -16,7 +16,7 @@ const Home = (props) => {
 
   const fecthPackage = () => {
     setLodding(true);
-    api.getPopularPackage({cate_key : "popular"})
+    api.getPopularPackage({cate_key : "popular",active : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);

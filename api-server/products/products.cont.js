@@ -429,7 +429,7 @@ exports.getRelatedProduct = async(req,res,next)=>{
     const pb = await ProductBoat.findOne({where : { product_id},include :  [{model : Boat , required:true}]})
     var data = []
     if(pb){
-      var where = {deleted : 0}
+      var where = {deleted : 0,is_draft:0,publish_status : 1,id : {[Op.ne] : product_id}}
       var where_date = {}
 
 
@@ -451,7 +451,7 @@ exports.getRelatedProduct = async(req,res,next)=>{
   
       
       const include = [
-        {model : PriceDate ,include :price_include,where : where_date,required:false },
+        {model : PriceDate ,include :price_include,where : where_date,required:true },
         // {model : ProductImage , attributes:['id','image','type','order']},
         // {model : Event},
         {model : ProductBoat, include : boat_include/* ,required:true */ },

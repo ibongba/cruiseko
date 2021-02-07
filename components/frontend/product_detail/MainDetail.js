@@ -12,11 +12,17 @@ import {toDateISO} from '../../../utils/tools'
 import {calPackagePrice,calDuration} from '../../../utils/packageHelper'
 import UserContext from '../../../contexts/UserContext';
 import api from '../../../utils/api'
+import ProductCard from '../product/ProductCard'
 
 
 const Detail = (props) => {
   const {packages} = props;
   const [reviews, setReview] = useState(false);
+  const [related,setRelated] = useState({
+    data : null,
+    error : false,
+    loading : false
+  })
   const [state,setState] = useState({
     date : toDateISO(new Date()),
     adult : 1,
@@ -80,6 +86,7 @@ const Detail = (props) => {
   useEffect(() => {
     if(!packages) return;
     fetchReview();
+    fetchRelated();
   }, [packages])
 
   // console.log('packages', packages);
@@ -94,6 +101,23 @@ const Detail = (props) => {
     .catch(err=>{
       console.log(err.response || err)
     })
+  }
+
+  const fetchRelated = ()=>{
+    if(!packages) return;
+
+    setRelated({...related,loading:true})
+    api.getRelatedPackage(packages.id)
+    .then(res => {
+      const data= res.data;
+      console.log('related',data)
+      setRelated({data , loading:false})
+    })
+    .catch(err=>{
+      setRelated({loading:false,error : true})
+      console.log(err.response || err)
+    })
+
   }
   
   return (
@@ -149,6 +173,27 @@ const Detail = (props) => {
             </aside>
           </div>
         </div>
+
+        {!!related.data && !!related.data.length && (
+          <div className="container">
+            <div className="row">
+                <div className="col-12">
+                  <h3>Related Packages</h3>
+                </div>
+            </div>
+            <div className="wrapper-grid">
+                <div className="row">
+                  {
+                    (related.data) ? related.data.map((val, index) => (
+                      <ProductCard key={val.id} packages={val} />
+                    )) : null
+                  }
+                </div>
+            </div>
+          </div>
+        )}
+
+        
       </div>
     </>
   )

@@ -32,7 +32,7 @@ const Index = (props) => {
 
   const fecthPackage = (params={}) => {
     setLoading(true);
-    api.getPackage().then(res=>{
+    api.getPackage({is_draft : 0}).then(res=>{
       const data = res.data;
       if(popular && popular.count > 0) {
         popular.rows.forEach((pops)=>{
