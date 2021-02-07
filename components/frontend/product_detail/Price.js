@@ -7,6 +7,7 @@ import Checkbox from '../../widget/Checkbox'
 import UserContext from '../../../contexts/UserContext';
 import AuthService from '../../../utils/AuthService';
 import LoginModal from '../../../components/frontend/login/Modal';
+import {errors} from '../../../utils/packageHelper'
 
 const Price = (props) => {
   const {error,state,setState,checkout, is_boat,addons=[],total_price_addons, packages} = props;
@@ -17,7 +18,7 @@ const Price = (props) => {
   const [showLogin, setShowLogin] = useState(false);
 
   // const [date,setDate] = useState()
-  const {price,unit,boat_amt} = props.priceData; 
+  const {price,unit,boat_amt,error : price_error,error_payload} = props.priceData; 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
     var tot=0;
@@ -147,6 +148,8 @@ const Price = (props) => {
         
 
           {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+
+          {price_error === errors.MIN_HOUR_BOAT && <small className="text-danger my-3" > Minimum rental hours : {error_payload.min_hour}  </small>} 
 
           {
           price !== -1 && 

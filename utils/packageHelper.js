@@ -3,6 +3,11 @@ const price_list = [
   {customer_type :'children',name : "Children's Price", price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0}
 ]
 
+
+
+export const errors = {
+  MIN_HOUR_BOAT : 'MIN_HOUR_BOAT'
+}
 const initStateTypeNormal = {
     start_date:null,end_date : null,
     pricing_type : 'normal',
@@ -142,7 +147,7 @@ export const calPackagePriceCard =(pkg,user,total_person=1)=>{
 }
 
 export const calPackagePrice =(pkg,user,date,adult,children,duration)=>{
-  var result = {price : -1 ,unit : 'person'}
+  var result = {price : -1 ,unit : 'person',error : null,error_payload : {}}
   if(!pkg ) return result;
   if(!pkg.price_dates.length) return result;
 
@@ -209,7 +214,7 @@ export const calPackagePrice =(pkg,user,date,adult,children,duration)=>{
     }
     else{
       const min_hour = Math.ceil(boat.min_hr / 60) 
-      if(duration < min_hour) return result;
+      if(duration < min_hour) return {...result,error : errors.MIN_HOUR_BOAT,error_payload: {min_hour }};
       result.price =  real_price*boat_amt*parseInt(duration)
       result.unit = 'boat'
       
