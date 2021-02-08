@@ -50,6 +50,9 @@ const Create = (props) => {
 
   const validMinHour = (e)=>{
     var {value} = e.target;
+    if(!value) {
+      return;
+    }
     if(parseInt(value) % 30 !== 0 ){
       e.target.value = parseInt(parseInt(value)  / 30) *30   ;
       // alert('555')
