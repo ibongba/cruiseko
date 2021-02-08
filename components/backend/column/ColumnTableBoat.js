@@ -33,8 +33,8 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
-      name: 'Time',
-      selector: 'time',
+      name: 'Min Time',
+      selector: 'min_hr',
       sortable: true,
     },
     {
