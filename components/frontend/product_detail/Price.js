@@ -167,7 +167,7 @@ const Price = (props) => {
 
         {
           process.browser &&  AuthService.isLoggin() ? (
-            <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+            <button type="button" disabled={price === -1 || !state.canBook} className={`btn_1 full-width purchase ${(price === -1 || !state.canBook) ? 'disabled' : ''}`} onClick={checkout}>Purchase</button>
           ) : (
             <button type="button" className="btn_1 full-width purchase" onClick={() => setShowLogin(true)}>Purchase</button>
           )

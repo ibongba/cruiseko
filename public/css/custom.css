@@ -672,6 +672,11 @@ button.slick-arrow {
   display: flex;
   justify-content: space-between;
 }
+button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabled:focus{
+  background-color: #EEE !important;
+  color: #000 !important;
+  cursor: unset !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
