@@ -7,6 +7,7 @@ import BlogCard from '../components/frontend/blog/BlogCard'
 import Link from 'next/link'
 import Head from 'next/head'
 import MainWidget from '../components/frontend/page/MainWidget'
+import Slick from "react-slick";
 
 const Home = (props) => {
   const {query,pages} = props;
@@ -16,10 +17,11 @@ const Home = (props) => {
 
   const fecthPackage = () => {
     setLodding(true);
-    api.getPopularPackage({cate_key : "popular",active : 1})
+    api.getPopularPackage({cate_key : "popular", active : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);
+      console.log(data);
       setLodding(false);
     })
     .catch(err => {
@@ -49,6 +51,43 @@ const Home = (props) => {
   }, []);
 
 
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      }
+    ]
+  };
+
   return (
     <Layout loading={loading} title={pages ? pages?.title : "Home" } page={'home'}>
       {
@@ -77,22 +116,37 @@ const Home = (props) => {
 					<div>
             <Banner data={pages ? pages : null} />
 					</div>
-					<div className="container margin_80_55">
-            <div className="main_title_2">
-              <span><em></em></span>
-              <h3>Our Popular Tours</h3>
-              <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-            </div>
-            <div className="wrapper-grid">
-              <div className="row">
-                {
-                  (packages && packages.rows) ? packages.rows.map((val, index) => (
-                    <ProductCard key={val.id} packages={val.product} />
-                  )) : null
-                }
+
+          {
+            (packages && packages.count > 0) ? (
+              <div className="container margin_80_55">
+                <div className="main_title_2">
+                  <span><em></em></span>
+                  <h3>Our Popular Tours</h3>
+                  <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                </div>
+                <div className="wrapper-grid">
+                  <div className="row">
+                    <div className="col-12">
+                      <Slick {...settings}>
+                        {
+                          (packages && packages.rows) ? packages.rows.map((val, index) => (
+                            <ProductCard key={val.id} packages={val.product} is_slick={true} />
+                          )) : null
+                        }
+                      </Slick>
+                    </div>
+                    {/* {
+                      (packages && packages.rows) ? packages.rows.map((val, index) => (
+                        <ProductCard key={val.id} packages={val.product} />
+                      )) : null
+                    } */}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ) : null
+          }
+					
 
           {
             pages && (pages.pages_widgets && pages.pages_widgets.length > 0) ? (

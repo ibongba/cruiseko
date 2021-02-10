@@ -13,7 +13,7 @@ import {calPackagePrice,calDuration} from '../../../utils/packageHelper'
 import UserContext from '../../../contexts/UserContext';
 import api from '../../../utils/api'
 import ProductCard from '../product/ProductCard'
-
+import Slick from "react-slick";
 
 const Detail = (props) => {
   const {packages} = props;
@@ -122,6 +122,43 @@ const Detail = (props) => {
     })
 
   }
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      }
+    ]
+  };
   
   return (
     <>
@@ -186,11 +223,20 @@ const Detail = (props) => {
             </div>
             <div className="wrapper-grid">
                 <div className="row">
-                  {
+                  <div className="col-12">
+                    <Slick {...settings}>
+                      {
+                        (related.data) ? related.data.map((val, index) => (
+                          <ProductCard key={val.id} packages={val} is_slick={true} />
+                        )) : null
+                      }
+                    </Slick>
+                  </div>
+                  {/* {
                     (related.data) ? related.data.map((val, index) => (
                       <ProductCard key={val.id} packages={val} />
                     )) : null
-                  }
+                  } */}
                 </div>
             </div>
           </div>
