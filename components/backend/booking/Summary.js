@@ -4,6 +4,8 @@ import tools from '../../../utils/tools';
 const Summary = (props) => {
   const {data} = props;
 
+  console.log(data)
+
   return (
     <>
       <h5>Summary</h5>
@@ -17,7 +19,7 @@ const Summary = (props) => {
           <div className="my-3">
             <div className="sum-text"><span className="addon">Addons</span></div>
             {data.booking_addons.map((val, index) => (
-              <div className="sum-text" key={index}><span>{val.addon?.name} </span> <span>{val.price} x {data.total_person}</span></div>
+              <div className="sum-text" key={index}><span>{val.addon?.name} </span> <span>{val.price} x {val.quantity}</span></div>
             ))}
           </div>
         )
