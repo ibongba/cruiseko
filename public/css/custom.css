@@ -592,6 +592,57 @@ a.btn_1:hover, .btn_1:hover {
   font-weight: 500;
   font-size: 18px;
 }
+.box_grid .wrapper h3 {
+  font-size: 20px;
+  font-size: 1.25rem;
+  margin-top: 0;
+  height: 48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+
+button.slick-arrow {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #EEEEEE;
+  border-radius: 8px;
+  margin-top: -42px;
+}
+.slick-next:before, .slick-prev:before {
+  font-size: 18px;
+  line-height: 1;
+  opacity: .75;
+  color: #000;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.slick-next.slick-disabled:before, .slick-prev.slick-disabled:before {
+  opacity: .25 !important;
+}
+/* .slick-next:focus, .slick-next:hover, .slick-prev:focus, .slick-prev:hover {
+  opacity: .25;
+} */
+.slick-next:focus:before, .slick-next:hover:before, .slick-prev:focus:before, .slick-prev:hover:before {
+  opacity: 1;
+}
+.slick-next:before {
+  content: '\f105';
+  margin-left: 3px;
+}
+.slick-prev:before {
+  content: '\f104';
+}
+.slick-prev {
+  left: -50px;
+}
+.slick-next {
+  right: -50px;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
@@ -624,5 +675,11 @@ a.btn_1:hover, .btn_1:hover {
   }
   img.img-fluid {
     width: 100%;
+  }
+  .slick-prev {
+    left: -32px;
+  }
+  .slick-next {
+    right: -32px;
   }
 }

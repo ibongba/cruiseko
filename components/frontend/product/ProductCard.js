@@ -6,7 +6,7 @@ import {calPackagePriceCard} from '../../../utils/packageHelper'
 import tools from '../../../utils/tools'
 
 const ProductCard = (props) => {
-  const {packages} = props;
+  const {packages, is_slick = false} = props;
   const { user } = useContext(UserContext);
 
   // console.log('pkg',packages)
@@ -38,7 +38,7 @@ const ProductCard = (props) => {
   return (
     packages ? (
       <>
-        <div className="col-xl-4 col-lg-6 col-md-6 card-top">
+        <div className={`${!is_slick ? "col-xl-4 col-lg-6 col-md-6" : 'mr-4'} card-top`}>
           <div className="box_grid">
             <figure>
               {/* <a href="#0" className="wish_bt"></a> */}
