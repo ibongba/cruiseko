@@ -23,12 +23,13 @@ const Detail = (props) => {
     error : false,
     loading : false
   })
+
   const [state,setState] = useState({
     date : toDateISO(new Date()),
     adult : 1,
     children : 0,
     start_time :'00:00',
-    end_time : '01:00',
+    end_time : '02:00',
     canBook : true,
     available_boat : -1,
     addons:[]
@@ -41,7 +42,9 @@ const Detail = (props) => {
     )
   },[packages,state,user])
 
-  const total_price_addons = state.addons.reduce((total,current) => total+ parseInt(current.price)*(state.adult+state.children)  , 0)
+  const total_price_addons = state.addons.reduce((total,current) => total+ parseInt(current.price)*current.quantity  , 0)
+
+  // console.log(state.addons)
   
 
   const checkout = () => {
