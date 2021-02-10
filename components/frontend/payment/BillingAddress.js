@@ -20,13 +20,13 @@ const BillingAddress = (props) => {
             <div className="col-sm-6">
               <div className="form-group">
                 <label>Address</label>
-                <input type="text" id="address" name="address" className="form-control" required />
+                <input type="text" id="address" name="address" className="form-control" />
               </div>
             </div>
             <div className="col-sm-6">
               <div className="form-group">
                 <label>Sub District</label>
-                <input type="text" id="sub_district" name="sub_district" className="form-control" required />
+                <input type="text" id="sub_district" name="sub_district" className="form-control" />
               </div>
             </div>
           </div>
@@ -34,19 +34,19 @@ const BillingAddress = (props) => {
             <div className="col-md-6 col-sm-12">
               <div className="form-group">
                 <label>District</label>
-                <input type="text" id="district" name="district" className="form-control" required />
+                <input type="text" id="district" name="district" className="form-control" />
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="form-group">
                 <label>Province</label>
-                <input type="text" id="province" name="province" className="form-control" required />
+                <input type="text" id="province" name="province" className="form-control" />
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="form-group">
                 <label>Postal code</label>
-                <input type="text" id="postal_code" name="postal_code" className="form-control" required />
+                <input type="text" id="postal_code" name="postal_code" className="form-control" />
               </div>
             </div>
           </div>

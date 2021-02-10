@@ -18,13 +18,13 @@ const BillingAddress = (props) => {
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">
-                <label>First name</label>
+                <label>First name <span className="text-danger">*</span></label>
                 <input type="text" className="form-control" id="firstname_booking" name="user_firstname" required />
               </div>
             </div>
             <div className="col-sm-6">
               <div className="form-group">
-                <label>Last name</label>
+                <label>Last name <span className="text-danger">*</span></label>
                 <input type="text" className="form-control" id="lastname_booking" name="user_lastname" required  />
               </div>
             </div>
@@ -32,13 +32,13 @@ const BillingAddress = (props) => {
           <div className="row">
             <div className="col-sm-6">
               <div className="form-group">
-                <label>Email</label>
+                <label>Email <span className="text-danger">*</span></label>
                 <input type="email" id="email_booking" name="user_email" className="form-control" required />
               </div>
             </div>
             <div className="col-sm-6">
               <div className="form-group">
-                <label>Telephone</label>
+                <label>Telephone <span className="text-danger">*</span></label>
                 <input type="text" id="telephone_booking" name="user_phone" className="form-control" required  />
               </div>
             </div>
