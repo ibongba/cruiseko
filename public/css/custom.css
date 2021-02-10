@@ -643,6 +643,31 @@ button.slick-arrow {
 .slick-next {
   right: -50px;
 }
+.box-addon {
+  margin-right: 16px;
+}
+.chk-price {
+  width: 32px;
+  display: inline-block;
+  text-align: right;
+}
+.box-addon .plus, .box-addon .minus {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.box-addon .plus.disabled i, .box-addon .minus.disabled i {
+    color: #eee;
+}
+.box-addon .number {
+  width: 24px;
+  display: inline-block;
+  text-align: center;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

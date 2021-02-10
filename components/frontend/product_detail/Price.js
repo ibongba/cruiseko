@@ -139,8 +139,11 @@ const Price = (props) => {
             <div>
               <span>Addons</span>
               <div className="mt-2">
-                {addons.map(val => <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} /> )}
-                
+                {
+                  addons.map(val => 
+                    <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} />
+                  )
+                }
               </div>
             </div>
           ) : null
