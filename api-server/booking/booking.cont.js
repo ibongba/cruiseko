@@ -183,6 +183,10 @@ exports.create = async(req,res,next)=>{
     var addons_dt = [] ;
     if(addons && addons.length){
       addons_dt = await ProductAddon.findAll({where : {id : addons.map(val => val.id) },raw:true})
+      addons_dt = addons_dt.map(val => {
+        const quantity = addons.find(item =>  item.id === val.id)?.quantity || 1
+        return {...val,quantity}
+      })
       total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*current.quantity  , 0)
       
     }
@@ -245,8 +249,8 @@ exports.create = async(req,res,next)=>{
     await BookingDetail.create(booking_detail,{transaction})
     if(addons_dt.length){
       var booking_addons = addons_dt.map(val => {
-        const quantity = addons.find(item =>  item.id === val.id)?.quantity || 1
-        return {...val,id : null,product_id,booking_id : booking.id,addon_id : val.id,quantity}
+        // const quantity = addons.find(item =>  item.id === val.id)?.quantity || 1
+        return {...val,id : null,product_id,booking_id : booking.id,addon_id : val.id}
       })
       // console.log('booking_addons',booking_addons)
       await BookingAddon.bulkCreate(booking_addons,{transaction})
