@@ -7,6 +7,7 @@ module.exports = (sequelize, type) => {
       },
       product_id : type.INTEGER,
       name : type.STRING,
+      description : type.TEXT,
       price : type.DECIMAL(18,2)
     },
     {

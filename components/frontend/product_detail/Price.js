@@ -92,7 +92,7 @@ const Price = (props) => {
     let index = state.addons.findIndex(val => val.id == id)
     if(checked){
       if(index === -1){
-        tmp.push(data)
+        tmp.push({...data,quantity : 1})
       }
     }
     else{
@@ -125,8 +125,8 @@ const Price = (props) => {
         {
           is_boat ? (
             <div className="d-flex">
-              <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} state={state} name={'start_time'} />
-              <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} state={state} name={'end_time'} />
+              <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} value={state.start_time} name={'start_time'} />
+              <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} value={state.end_time} name={'end_time'} />
             </div>
           ) : null
         }

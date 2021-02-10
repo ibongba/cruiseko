@@ -5,6 +5,7 @@ import Button from '../../widget/Button';
 const init_state = {
   name : '',
   price : '',
+  description : ''
 }
 
 const AddAddons = memo((props) => {
@@ -52,6 +53,17 @@ const AddAddons = memo((props) => {
             onChange : onChange
           }} 
           labelName="Price" iconProps={{className : 'fa icon icon-email'}}  />
+        </div>
+        
+      </div>
+      <div className="row justify-content-center align-items-center mb-5">
+        <div className="col-lg-4 col-12">
+          
+          <div className="form-group">
+            <label>Description</label>
+            <textarea className="form-control" name='addon:description' value={state.description} onChange={onChange} />
+          </div>
+          
         </div>
       </div>
       <div className="text-center">

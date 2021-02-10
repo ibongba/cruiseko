@@ -2,9 +2,17 @@
 import React, { useEffect, useState } from 'react';
   
 const SelectTime = (props) => {
-  const {active, setActive, onTimeChange, state, name} = props;
+  const {active, setActive, onTimeChange, value, name} = props;
   const [hour, setHour] = useState('00');
   const [minute, setMinute] = useState('00');
+
+  useEffect(()=>{
+    if(value){
+      var arr = value.split(':')
+      setHour(arr[0])
+      setMinute(arr[1])
+    }
+  },[value])
 
   const option_hours = []
   for(var i = 0;i<=23;i++) {

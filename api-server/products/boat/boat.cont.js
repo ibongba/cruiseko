@@ -27,7 +27,7 @@ exports.getAll = async(req,res,next)=>{
       }
 
       if(no_limit == 1){
-        delete options.no_limit
+        delete options.limit
       }
       const cates = await Boat.findAndCountAll(options);
       res.json(cates)

@@ -33,7 +33,7 @@ const Summayry = (props) => {
           (
             <>
               <span className="font-weight-bold">Addons</span>
-              {data.addons.map(val =>  <div className="d-flex justify-content-between" key={val.name}> <span>{val.name}</span><span>{parseInt(val.price)} x {total_person}</span></div> )}
+              {data.addons.map(val =>  <div className="d-flex justify-content-between" key={val.name}> <span>{val.name}</span><span>{parseInt(val.price)} x {val.quantity}</span></div> )}
               <div className="mt-3" id="total_cart">Net Price <span className="float-right"> {parseFloat(data.net_price).toFixed(2) }฿</span></div>
             </>
           ) 

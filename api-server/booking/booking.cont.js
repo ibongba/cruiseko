@@ -183,7 +183,7 @@ exports.create = async(req,res,next)=>{
     var addons_dt = [] ;
     if(addons && addons.length){
       addons_dt = await ProductAddon.findAll({where : {id : addons.map(val => val.id) },raw:true})
-      total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*(adult+children)  , 0)
+      total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*current.quantity  , 0)
       
     }
     
@@ -245,23 +245,28 @@ exports.create = async(req,res,next)=>{
     await BookingDetail.create(booking_detail,{transaction})
     if(addons_dt.length){
       var booking_addons = addons_dt.map(val => {
-        return {...val,id : null,product_id,booking_id : booking.id,addon_id : val.id}
+        const quantity = addons.find(item =>  item.id === val.id)?.quantity || 1
+        return {...val,id : null,product_id,booking_id : booking.id,addon_id : val.id,quantity}
       })
       // console.log('booking_addons',booking_addons)
       await BookingAddon.bulkCreate(booking_addons,{transaction})
 
     }
-    var address_data = {
-      booking_id : booking.id,
-      user_id : user.id,
-      address,
-      sub_district,
-      district,
-      province,
-      postal_code
-    }
 
-    await BookingAddress.create(address_data,{transaction})
+    if(address){
+      var address_data = {
+        booking_id : booking.id,
+        user_id : user.id,
+        address,
+        sub_district,
+        district,
+        province,
+        postal_code
+      }
+  
+      await BookingAddress.create(address_data,{transaction})
+    }
+    
 
     // throw new Error()
     

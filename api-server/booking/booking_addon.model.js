@@ -8,7 +8,11 @@ module.exports = (sequelize, type) => {
     booking_id : type.STRING,
     product_id : type.INTEGER,
     addon_id : type.INTEGER,
-    price : type.DECIMAL(18,2)
+    price : type.DECIMAL(18,2),
+    quantity : {
+      type : type.INTEGER,
+      defaultValue : 1
+    }
   },
   {
       timestamps: false,
