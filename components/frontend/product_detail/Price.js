@@ -106,7 +106,6 @@ const Price = (props) => {
 
   
 
-  // console.log('addons',addons)
 
 
   return (
