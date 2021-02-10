@@ -21,9 +21,10 @@ class ComponentToPrint extends React.Component {
 
   render() {
     const {data} = this.props
-    const {booking_boats,booking_details} = data;
+    const {booking_boats,booking_details,user_type} = data;
     const type = (booking_boats[0]?.boat?.boat_category?.code ?? '') + '-' +  
-    (booking_boats[0]?.boat?.boat_category?.name ?? '')
+    (booking_boats[0]?.boat?.boat_category?.name ?? '');
+    // console.log(user_type);
     return (
       <div className="container">
         <div className="row border-p ">
@@ -243,11 +244,11 @@ class ComponentToPrint extends React.Component {
             </div>
             
         </div>
-        <div className="row mb-3 border-p-r">
-            <div className="col-8">
+        {
+            user_type == 'fit' ? (
                 <div className="row border-p-l border-p-b mb-3">
                     <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
-                       <div className="">
+                    <div className="">
                             <p className="text-bold mb-0">
                             Total Selling Price 
                             </p>
@@ -257,137 +258,164 @@ class ComponentToPrint extends React.Component {
                     <div className="col-4 border-p-r d-flex justify-content-center px-3 py-2">
                         <h4 className="mb-0 text-bold align-self-end">{data.net_price}</h4>
                     </div>
-                    <div className="col-4 d-flex justify-content-center px-3 py-2">
+                    <div className="col-4 border-p-r d-flex justify-content-center px-3 py-2">
                         <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
                     </div>
                 </div>
-                <div className="row border-p-l border-p-y mb-3">
-                    <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
-                        <p className="text-bold mb-0 ">
-                        เพิ่มเติม
-                        </p>
-                    </div>
-                    <div className="col-4 border-p-r px-3 py-2">
-                        
-                    </div>
-                    <div className="col-4 d-flex justify-content-center px-3 py-2">
-                        <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
-                    </div>
-                </div>
-                <div className="row border-p-l border-p-y">
-                    <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
-                        <p className="text-bold mb-0 ">
-                        Deposit มัดจำ
-                        </p>
-                    </div>
-                    <div className="col-4 border-p-r px-3 py-2">
-                        
-                    </div>
-                    <div className="col-4 d-flex justify-content-center px-3 py-2">
-                        <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
-                    </div>
-                </div>
-            </div>
-            <div className="col-4 border-p-l border-p-b px-3 py-2">
-                <div>
-                    <p className="mb-1 text-14"><span className="text-bold">ชื่อ: </span>บริษัท เอฟดับบลิวดีประกันชีวิต จำกัด (มหาชน)</p>
-                </div>
-                <div>
-                    <p className="mb-1 text-14"><span className="text-bold">เลขทะเบียนบริษัท: </span>0107563000304</p>
-                </div>
-                <div className="d-flex ">
-                    <div className="w-75" >
-                        <p className="mb-1 text-14 text-bold">ที่อยู่ตามที่จดทะเบียน: </p>
-                    </div>
-                    <div className="w-100">
-                        <p className="mb-1 text-14">เลขที่ 130-132 อาคารสินธรกาวเวอร์ 3 ชั้น 14, 16, 26-29 ถนนวิทยุ แขวงลุมพินี เขตปทุมวัน กรุงเทพ 10330</p>
-                    </div>
-                </div>
-                <div>
-                    <p className="mb-1 text-14"><span className="text-bold">บัญชีเพื่อการชำระเงินและทำธุรกรรม: </span>ไม่มีการเปลี่ยนแปลง</p>
-                </div>
-            </div>
-        </div>
-        <div className="row border-p-t ">
-            <div className="col-8  pb-3">
-                <div className="row border-p-b border-p-l">
-                    <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
-                        <div className="">
-                            <p className="text-bold mb-0">Outstanding balance</p>
-                            <p className="text-bold mb-0">เงินคงเหลือ</p>  
+            ) : null
+        }
+        {
+            user_type != 'fit' ? (
+                <>
+                    <div className="row mb-3 border-p-r">
+                        <div className="col-8">
+                            <div className="row border-p-l border-p-b mb-3">
+                                <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
+                                <div className="">
+                                        <p className="text-bold mb-0">
+                                        Total Selling Price 
+                                        </p>
+                                        <p className="text-bold mb-0">ราคาขายรวมทั้งสิ้น</p>
+                                    </div>
+                                </div>
+                                <div className="col-4 border-p-r d-flex justify-content-center px-3 py-2">
+                                    <h4 className="mb-0 text-bold align-self-end">{data.net_price}</h4>
+                                </div>
+                                <div className="col-4 d-flex justify-content-center px-3 py-2">
+                                    <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
+                                </div>
+                            </div>
+                            <div className="row border-p-l border-p-y mb-3">
+                                <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
+                                    <p className="text-bold mb-0 ">
+                                    เพิ่มเติม
+                                    </p>
+                                </div>
+                                <div className="col-4 border-p-r px-3 py-2">
+                                    
+                                </div>
+                                <div className="col-4 d-flex justify-content-center px-3 py-2">
+                                    <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
+                                </div>
+                            </div>
+                            <div className="row border-p-l border-p-y">
+                                <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
+                                    <p className="text-bold mb-0 ">
+                                    Deposit มัดจำ
+                                    </p>
+                                </div>
+                                <div className="col-4 border-p-r px-3 py-2">
+                                    
+                                </div>
+                                <div className="col-4 d-flex justify-content-center px-3 py-2">
+                                    <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
+                                </div>
+                            </div>
                         </div>
-                        
-                    </div>
-                    <div className="col-4 border-p-r px-3 py-2">
-                        
-                    </div>
-                    <div className="col-4 d-flex justify-content-center px-3 py-2">
-                        <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
-                    </div>
-                </div>
-            </div>
-            <div className="col-4 border-p-x">
-                <div className="row border-p-b px-3 py-2">
-                    <p className="mb-0 text-bold">Cruiseko Company Bank Account บัญชี ธนาคารของบริษัทครุยเซโกะ จำกัด</p>
-                </div>
-                <div className="row px-3 py-2">
-                    <p className="mb-0 text-bold">Kasikorn Bank/ Acc No 049 148 2540</p>
-                    <p className="mb-0 text-bold">ธนาคารกสิกรไทย เลขที่049 148 2540</p>
-                </div>
-            </div>
-        </div>
-        <div className="row border-p-t">
-            <div className="col-2 border-p-x border-p-b d-flex align-items-center justify-content-center px-3 py-2">
-                <div className="text-align-last-center">
-                    <p className="text-bold mb-0">For internal </p>
-                    <p className="text-bold mb-0">สำหรับเจ้าหน้าที่ </p> 
-                </div>
-              
-            </div>
-            <div className="col-3 border-p-b1 px-3 py-2">
-                <p className="text-bold">Client type ประเภทลูกค้า </p>
-            </div>
-            <div className="col-7 border-p-b1 border-p-r ">
-                <div className="row">
-                    <div className="col-5 px-3 py-2">
-                        <p className="text-bold ">____    Direct</p>
-                        <p className="text-bold mt-2 mb-0">__/__    Line @cruiseko</p>
-                    </div>
-                    <div className="col-7 px-3 py-2">
-                        <p className="text-bold ">________  Corporate/Agent</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="row  border-p-b">
-            <div className="col-2 border-p-x d-flex align-items-center px-3 py-2">
-                <div>
-                    <h5 className="text-bold mb-0">Invoice</h5>
-                    <h5 className="text-bold mb-0">ใบวางบิล</h5>  
-                </div>
-                
-            </div>
-            <div className="col-3 border-p-r1"></div>
-            <div className="col-7 border-p-r">
-                <div className="row">
-                    <div className="col-3 d-flex align-items-center px-3 py-2">
-                        <div> 
-                            <h5 className="text-bold mb-0">Status</h5>
-                            <h5 className="text-bold mb-0">สถานะ</h5>   
+                        <div className="col-4 border-p-l border-p-b px-3 py-2">
+                            <div>
+                                <p className="mb-1 text-14"><span className="text-bold">ชื่อ: </span>บริษัท เอฟดับบลิวดีประกันชีวิต จำกัด (มหาชน)</p>
+                            </div>
+                            <div>
+                                <p className="mb-1 text-14"><span className="text-bold">เลขทะเบียนบริษัท: </span>0107563000304</p>
+                            </div>
+                            <div className="d-flex ">
+                                <div className="w-75" >
+                                    <p className="mb-1 text-14 text-bold">ที่อยู่ตามที่จดทะเบียน: </p>
+                                </div>
+                                <div className="w-100">
+                                    <p className="mb-1 text-14">เลขที่ 130-132 อาคารสินธรกาวเวอร์ 3 ชั้น 14, 16, 26-29 ถนนวิทยุ แขวงลุมพินี เขตปทุมวัน กรุงเทพ 10330</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="mb-1 text-14"><span className="text-bold">บัญชีเพื่อการชำระเงินและทำธุรกรรม: </span>ไม่มีการเปลี่ยนแปลง</p>
+                            </div>
                         </div>
+                    </div>
+                    <div className="row border-p-t ">
+                        <div className="col-8  pb-3">
+                            <div className="row border-p-b border-p-l">
+                                <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
+                                    <div className="">
+                                        <p className="text-bold mb-0">Outstanding balance</p>
+                                        <p className="text-bold mb-0">เงินคงเหลือ</p>  
+                                    </div>
+                                    
+                                </div>
+                                <div className="col-4 border-p-r px-3 py-2">
+                                    
+                                </div>
+                                <div className="col-4 d-flex justify-content-center px-3 py-2">
+                                    <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-4 border-p-x">
+                            <div className="row border-p-b px-3 py-2">
+                                <p className="mb-0 text-bold">Cruiseko Company Bank Account บัญชี ธนาคารของบริษัทครุยเซโกะ จำกัด</p>
+                            </div>
+                            <div className="row px-3 py-2">
+                                <p className="mb-0 text-bold">Kasikorn Bank/ Acc No 049 148 2540</p>
+                                <p className="mb-0 text-bold">ธนาคารกสิกรไทย เลขที่049 148 2540</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row border-p-t">
+                        <div className="col-2 border-p-x border-p-b d-flex align-items-center justify-content-center px-3 py-2">
+                            <div className="text-align-last-center">
+                                <p className="text-bold mb-0">For internal </p>
+                                <p className="text-bold mb-0">สำหรับเจ้าหน้าที่ </p> 
+                            </div>
                         
+                        </div>
+                        <div className="col-3 border-p-b1 px-3 py-2">
+                            <p className="text-bold">Client type ประเภทลูกค้า </p>
+                        </div>
+                        <div className="col-7 border-p-b1 border-p-r ">
+                            <div className="row">
+                                <div className="col-5 px-3 py-2">
+                                    <p className="text-bold ">____    Direct</p>
+                                    <p className="text-bold mt-2 mb-0">__/__    Line @cruiseko</p>
+                                </div>
+                                <div className="col-7 px-3 py-2">
+                                    <p className="text-bold ">________  Corporate/Agent</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-4 px-3 py-2">
-                        <p className="text-bold mb-3">__/___  complete เสร็จ</p>
-                        <p className="text-bold mb-0">____     Pending ค้าง</p>
+                    <div className="row  border-p-b">
+                        <div className="col-2 border-p-x d-flex align-items-center px-3 py-2">
+                            <div>
+                                <h5 className="text-bold mb-0">Invoice</h5>
+                                <h5 className="text-bold mb-0">ใบวางบิล</h5>  
+                            </div>
+                            
+                        </div>
+                        <div className="col-3 border-p-r1"></div>
+                        <div className="col-7 border-p-r">
+                            <div className="row">
+                                <div className="col-3 d-flex align-items-center px-3 py-2">
+                                    <div> 
+                                        <h5 className="text-bold mb-0">Status</h5>
+                                        <h5 className="text-bold mb-0">สถานะ</h5>   
+                                    </div>
+                                    
+                                </div>
+                                <div className="col-4 px-3 py-2">
+                                    <p className="text-bold mb-3">__/___  complete เสร็จ</p>
+                                    <p className="text-bold mb-0">____     Pending ค้าง</p>
+                                </div>
+                                <div className="col-5 px-3 py-2">
+                                    <p className="text-bold  mb-0 ">____  Cancel ยกเลิก</p>
+                                    <p className="text-bold mb-0">เหตุผล:</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-5 px-3 py-2">
-                        <p className="text-bold  mb-0 ">____  Cancel ยกเลิก</p>
-                        <p className="text-bold mb-0">เหตุผล:</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </>
+            ) : null
+        }
+        
       </div>
     );
   }

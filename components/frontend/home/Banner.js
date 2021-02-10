@@ -30,7 +30,7 @@ const Banner = (props) => {
     }
   }
 
-  console.log(data);
+  // console.log('home banner', data);
 
  
   return (

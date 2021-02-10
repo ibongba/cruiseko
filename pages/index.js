@@ -21,7 +21,7 @@ const Home = (props) => {
     .then(res=>{
       const data = res.data;
       setPackage(data);
-      console.log(data);
+      // console.log(data);
       setLodding(false);
     })
     .catch(err => {
@@ -125,6 +125,11 @@ const Home = (props) => {
                   <h3>Our Popular Tours</h3>
                   <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
                 </div>
+                {
+                  packages.count > 3 ? (
+                    <p className="btn_home_align"><Link href="/popular"><a className="btn_1 rounded">View all popular</a></Link></p>
+                  ) : null
+                }
                 <div className="wrapper-grid">
                   <div className="row">
                     <div className="col-12">
