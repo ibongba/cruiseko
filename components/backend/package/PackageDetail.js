@@ -6,6 +6,7 @@ import api from '../../../utils/api-admin';
 import DivLoad from '../../widget/DivLoad';
 import InputLabel from '../../widget/InputLabel';
 import Datetime from 'react-datetime';
+import TextAreaLength from '../../widget/TextAreaLength'
 
 const animatedComponents = makeAnimated();
 
@@ -147,7 +148,8 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Short Description</label>
-            <textarea className="form-control" name="short_description" required defaultValue={pkg ? pkg.short_description : ''}></textarea>
+            <TextAreaLength className="form-control" name="short_description" required value={pkg ? pkg.short_description : ''} />
+            {/* <textarea className="form-control" name="short_description" required defaultValue={pkg ? pkg.short_description : ''}></textarea> */}
           </div>
         </div>
       </div>
