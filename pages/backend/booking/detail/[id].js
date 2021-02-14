@@ -6,9 +6,11 @@ import api from '../../../../utils/api-admin'
 import Summary from '../../../../components/backend/booking/Summary'
 import Detail from '../../../../components/backend/booking/Detail';
 import UserBooking from '../../../../components/backend/booking/UserBooking';
+import ModalSlip from '../../../../components/backend/booking/ModalSlip';
 
 const Index = (props) => {
   const [bookings, setBooking] = useState();
+  const [show, setShow] = useState();
   const router = useRouter()
   const {id} = router.query;
 
@@ -25,7 +27,9 @@ const Index = (props) => {
 
   }, [id]);
 
-  console.log(bookings);
+  
+
+  // console.log(bookings);
 
 
   return (
@@ -58,9 +62,21 @@ const Index = (props) => {
                   <Summary data={bookings} />
                 </div>
               </div>
+
+              {
+                (bookings.payment_status == 1 && bookings.slips.length > 0) && (
+                  <button className="btn btn-primary mt-3" onClick={() => setShow(true)}>Check Tranfer Slip</button>
+                )
+              }
+              <div>
+
+              </div>
+              <ModalSlip show={show}
+                size="md" onHide={() => setShow(false)} bookings={bookings} />
             </>
           ) : null
         }
+        
       </Layout>
     </>
   )

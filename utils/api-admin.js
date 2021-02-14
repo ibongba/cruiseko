@@ -159,5 +159,7 @@ export default {
     updatePopularOrder : (data) => service.post(`/recommend/products/order`, data),
 
 
+    //Tranfer Slip
+    updateBookingSlip : (id, data) => service.post(`/booking/slip/${id}`, data),
 
 }
