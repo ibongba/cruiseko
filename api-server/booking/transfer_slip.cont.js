@@ -99,7 +99,7 @@ exports.update = async(req,res,next)=>{
         payment_date : transfer_date,
         payment_type : "TRANSFER"
       }
-      await Booking.update(prep,{where : {booking_id},transaction})
+      await Booking.update(prep,{where : {id : booking_id},transaction})
     }
 
 
