@@ -160,6 +160,6 @@ export default {
 
 
     //Tranfer Slip
-    updateBookingSlip : (id, data) => service.post(`/booking/slip/${id}`, data),
+    updateBookingSlip : (id, data) => service.put(`/booking/slip/${id}`, data),
 
 }
