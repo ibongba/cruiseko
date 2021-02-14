@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import React from 'react';
+import {isCancel} from '../../../utils/packageHelper'
 
 const ColumsBody = (props) => {
 
@@ -28,7 +29,12 @@ const ColumsBody = (props) => {
       selector: 'payment_status',
       sortable: true,
       cell : row => (
-        row.payment_status == 1 ? <span className="text-warning">Pending</span> : <span className="text-success">Success</span>
+        isCancel(row) ? 
+        <span className="text-danger">Cancel</span> :
+        row.payment_status == 1 ? 
+        <span className="text-warning">Pending</span> : 
+        
+        <span className="text-success">Success</span>
       )
     },
     {
