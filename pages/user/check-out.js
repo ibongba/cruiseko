@@ -96,6 +96,7 @@ const Payment = (props) => {
                       <Paypal   
                         onPaypalSuccess={onPaypalSuccess} 
                         booking={booking}
+                        total_price={data ? parseFloat(data.net_price).toFixed(2) : '' }
                       />
                     }
                     

@@ -74,5 +74,8 @@ export default {
     //Popular Package
     getPopularPackage : (params) => service.get(`/recommend/products`, {params}),
 
+    //Tranfer Slip
+    insertBookingSlip : (data) => service.post(`/booking/slip`,data),
+
 
 }

@@ -1,0 +1,128 @@
+
+import React, { useContext, useEffect, useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import Router from 'next/router'
+import ImageBoxBackend from '../../widget/ImageBoxBackend';
+import api from '../../../utils/api'
+import UserContext from '../../../contexts/UserContext';
+
+const Dialog = (props) => {
+  const {show, size, onHide, total_price, booking, user_id} = props;
+
+  const { user } = useContext(UserContext);
+
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+
+    var data = new FormData(event.target);
+    data.append('booking', booking.id);
+    data.append('user_id', user.id);
+    api.insertBookingSlip(data)
+    .then(res=>{
+      const data = res.data;
+      Router.push('/order-success')
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  const [chkImg, setChkimg]  = useState(false);
+  useEffect(() => {
+    $('input[name="tranfer_date"]').daterangepicker({
+		  autoUpdateInput: true,
+		  parentEl:'.scroll-fix',
+		  singleDatePicker: true,
+		  autoApply: true,
+		  minDate:new Date(),
+		  showCustomRangeLabel: false,
+		  locale: {
+	        format: 'MM-DD-YYYY'
+	      }
+      });
+  },[]);
+  
+  
+  return (
+    <Modal className="modal-alert" id="sign-in-dialog" centered show={show} onHide={onHide} size={size}>
+      <Modal.Body>
+        <div className="row">
+          <div className="col-12">
+            <div className="small-dialog-header">
+              <h3>Tranfer Slip</h3>
+            </div>
+            <form className="px-3" id="login-form-modal" onSubmit={handleSubmit}>
+              <div>
+                <div className="form-group mb-1">
+                  <label>Tranfer Slip</label>
+                  <ImageBoxBackend  _name="image" _id="image" chkImg={chkImg} required={true} classBox={'box-slip'} />
+                </div>
+                <div className="form-group input-dates">
+                  <label>Tranfer Date</label>
+                  <input className="form-control" type="text" name="tranfer_date" placeholder="When.." required  />
+                  <i className="icon_calendar"></i>
+                </div>
+                <div className="form-group mb-1">
+                  <label>From Bank</label>
+                  <select name="from_bank" className="form-control padding-10" required >
+                    <option value="" className="selected">Select Bank</option>
+                    <option value="ไทยพาณิชย์ (SCB)" data-index="0">ไทยพาณิชย์ (SCB)</option>
+                    <option value="กสิกรไทย (Kbank)" data-index="1" className="selected">กสิกรไทย (Kbank)</option>
+                    <option value="กรุงไทย (KTB)" data-index="2">กรุงไทย (KTB)</option>
+                    <option value="กรุงเทพ (BBL)" data-index="3">กรุงเทพ (BBL)</option>
+                    <option value="กรุงศรี (BAY)" data-index="4">กรุงศรี (BAY)</option>
+                    <option value="ธนชาติ (Thanachart)" data-index="5">ธนชาติ (Thanachart)</option>
+                    <option value="ทหารไทย (TMB)" data-index="6">ทหารไทย (TMB)</option>
+                    <option value="ออมสิน (GSB)" data-index="7">ออมสิน (GSB)</option>
+                    <option value="ธ.ก.ส. (BAAC)" data-index="8">ธ.ก.ส. (BAAC)</option>
+                    <option value="เกียรตินาคิน (Kiatnakin)" data-index="9">เกียรตินาคิน (Kiatnakin)</option>
+                    <option value="แสตนดาร์ดชาร์เตอร์ด (Standard Chartered)" data-index="10">แสตนดาร์ดชาร์เตอร์ด (Standard Chartered)</option>
+                    <option value="ยูโอบี (UOB)" data-index="11">ยูโอบี (UOB)</option>
+                    <option value="ทิสโก้ (TISCO)" data-index="12">ทิสโก้ (TISCO)</option>
+                    <option value="ซีไอเอ็มบี (CIMB)" data-index="13">ซีไอเอ็มบี (CIMB)</option>
+                    <option value="ไอซีบีซี (ICBC)" data-index="14">ไอซีบีซี (ICBC)</option>
+                  </select>
+                </div>
+                <div className="form-group mb-1">
+                  <label>To Bank</label>
+                  <select name="to_bank" className="form-control padding-10" required >
+                    <option value="" className="selected">Select Bank</option>
+                    <option value="ไทยพาณิชย์ (SCB)" data-index="0">ไทยพาณิชย์ (SCB)</option>
+                    <option value="กสิกรไทย (Kbank)" data-index="1" className="selected">กสิกรไทย (Kbank)</option>
+                    <option value="กรุงไทย (KTB)" data-index="2">กรุงไทย (KTB)</option>
+                    <option value="กรุงเทพ (BBL)" data-index="3">กรุงเทพ (BBL)</option>
+                    <option value="กรุงศรี (BAY)" data-index="4">กรุงศรี (BAY)</option>
+                    <option value="ธนชาติ (Thanachart)" data-index="5">ธนชาติ (Thanachart)</option>
+                    <option value="ทหารไทย (TMB)" data-index="6">ทหารไทย (TMB)</option>
+                    <option value="ออมสิน (GSB)" data-index="7">ออมสิน (GSB)</option>
+                    <option value="ธ.ก.ส. (BAAC)" data-index="8">ธ.ก.ส. (BAAC)</option>
+                    <option value="เกียรตินาคิน (Kiatnakin)" data-index="9">เกียรตินาคิน (Kiatnakin)</option>
+                    <option value="แสตนดาร์ดชาร์เตอร์ด (Standard Chartered)" data-index="10">แสตนดาร์ดชาร์เตอร์ด (Standard Chartered)</option>
+                    <option value="ยูโอบี (UOB)" data-index="11">ยูโอบี (UOB)</option>
+                    <option value="ทิสโก้ (TISCO)" data-index="12">ทิสโก้ (TISCO)</option>
+                    <option value="ซีไอเอ็มบี (CIMB)" data-index="13">ซีไอเอ็มบี (CIMB)</option>
+                    <option value="ไอซีบีซี (ICBC)" data-index="14">ไอซีบีซี (ICBC)</option>
+                  </select>
+                </div>
+                <div className="form-group mb-1">
+                  <label>Price</label>
+                  <input type="text" name="amount" className="form-control padding-10" required defaultValue={total_price} />
+                </div>
+                <div className="form-group mb-1">
+                  <label>Pin</label>
+                  <input type="text" name="pin" className="form-control padding-10" required minLength={4} maxLength={4} />
+                </div>
+              </div>
+              <div className="mt-4">
+                <button className="btn btn-primary w-100">Pay Now</button>
+              </div>
+            </form>
+            <button title="Close (Esc)" type="button" className="mfp-close" onClick={onHide}></button>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>  
+  )
+}
+
+export default Dialog

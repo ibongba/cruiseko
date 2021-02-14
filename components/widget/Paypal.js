@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import scriptLoader from 'react-async-script-loader'
+import ModalTranfer from '../../components/frontend/payment/ModalTranfer'
 
 const client_id = process.env.PAYPAL_CLIENT_ID
 
@@ -13,7 +14,8 @@ class PaypalButton extends React.Component {
     this.state = {
       showButtons: false,
       loading: true,
-      paid: false
+      paid: false,
+      modal: false,
     };
 
     window.React = React;
@@ -76,9 +78,10 @@ class PaypalButton extends React.Component {
     });
   };
 
+  
+
   render() {
-    const { showButtons, loading, paid } = this.state;
-    
+    const { showButtons, loading, paid, modal } = this.state;
 
     return (
       <div className="main">
@@ -93,6 +96,9 @@ class PaypalButton extends React.Component {
           </div>
         )}
 
+        <button type="button" className="btn btn-primary w-100 border-r-4px" onClick={() => this.setState({ modal: true })}>Tranfer Slip</button>
+
+
         {paid && (
           <div className="main">
             <h2>
@@ -105,6 +111,10 @@ class PaypalButton extends React.Component {
             </h2>
           </div>
         )}
+        <ModalTranfer show={modal} size={'md'} 
+          onHide={() => this.setState({ modal: false })} 
+          total_price={this.props.total_price}
+          booking={this.props.booking} />    
       </div>
     );
   }
