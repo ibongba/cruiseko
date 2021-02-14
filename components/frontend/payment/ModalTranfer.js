@@ -5,11 +5,13 @@ import Router from 'next/router'
 import ImageBoxBackend from '../../widget/ImageBoxBackend';
 import api from '../../../utils/api'
 import UserContext from '../../../contexts/UserContext';
+import Datetime from 'react-datetime';
 
 const Dialog = (props) => {
-  const {show, size, onHide, total_price, booking, user_id} = props;
+  const {show, size, onHide, total_price, booking} = props;
 
   const { user } = useContext(UserContext);
+  const [startDate, setStartDate] = useState(null);
 
   const handleSubmit = (event)=>{
     event.preventDefault();
@@ -28,19 +30,12 @@ const Dialog = (props) => {
   }
 
   const [chkImg, setChkimg]  = useState(false);
-  useEffect(() => {
-    $('input[name="tranfer_date"]').daterangepicker({
-		  autoUpdateInput: true,
-		  parentEl:'.scroll-fix',
-		  singleDatePicker: true,
-		  autoApply: true,
-		  minDate:new Date(),
-		  showCustomRangeLabel: false,
-		  locale: {
-	        format: 'MM-DD-YYYY'
-	      }
-      });
-  },[]);
+  const showstartDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setStartDate(data);
+  }
   
   
   return (
@@ -57,10 +52,14 @@ const Dialog = (props) => {
                   <label>Tranfer Slip</label>
                   <ImageBoxBackend  _name="image" _id="image" chkImg={chkImg} required={true} classBox={'box-slip'} />
                 </div>
-                <div className="form-group input-dates">
+                <div className="form-group">
                   <label>Tranfer Date</label>
-                  <input className="form-control" type="text" name="tranfer_date" placeholder="When.." required  />
-                  <i className="icon_calendar"></i>
+                  <Datetime 
+                    dateFormat="YYYY-MM-DD" 
+                    timeFormat={'HH:mm'}
+                    onChange={(e)=> {showstartDate(e)}}
+                    value={startDate ? startDate : ''}
+                    inputProps={{ name: 'tranfer_date', required : true, autoComplete : 'off', className : 'form-control padding-10' }} />
                 </div>
                 <div className="form-group mb-1">
                   <label>From Bank</label>

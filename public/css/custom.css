@@ -696,6 +696,11 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
 .form-control.padding-10 {
   padding: 10px !important;
 }
+.box-img.circle .img-box.box-slip:hover .dropbox, .img-box.box-slip:hover .dropbox {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 4px !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
