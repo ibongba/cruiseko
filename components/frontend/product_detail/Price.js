@@ -104,6 +104,22 @@ const Price = (props) => {
     setState({...state,addons:tmp})
   }
 
+  const onAmountAddonChange = (name,quantity) =>{
+    var id = name.split('-')[1]
+    if(!id) return;
+    var tmp = [...state.addons]
+    var data = addons.find(val => val.id == id)
+    let index = state.addons.findIndex(val => val.id == id)
+    if(index === -1){
+      tmp.push({...data,quantity})
+    }
+    else{
+      tmp[index] = {...tmp[index],quantity}
+    }
+    
+    setState({...state,addons:tmp})
+  }
+
   
 
 
@@ -140,7 +156,15 @@ const Price = (props) => {
               <div className="mt-2">
                 {
                   addons.map(val => 
-                    <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} />
+                    <Checkbox key={val.name} 
+                    name={`addon-${val.id}`} 
+                    checked={!!state.addons.find(item => item.id == val.id)}
+                    value1={val.name} 
+                    value2={parseInt(val.price) } 
+                    onChange={onAddonChange} 
+                    quantity={state.addons.find(item => item.id == val.id)?.quantity || 1}
+                    
+                    onAmountAddonChange={onAmountAddonChange} />
                   )
                 }
               </div>
