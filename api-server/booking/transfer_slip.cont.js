@@ -1,4 +1,4 @@
-const {TransferSlip,Booking} = require('../db')
+const {sequelize,TransferSlip,Booking} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
