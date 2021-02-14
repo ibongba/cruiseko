@@ -15,7 +15,7 @@ const Dialog = (props) => {
     event.preventDefault();
 
     var data = new FormData(event.target);
-    data.append('booking', booking.id);
+    data.append('booking_id', booking.id);
     data.append('user_id', user.id);
     api.insertBookingSlip(data)
     .then(res=>{
