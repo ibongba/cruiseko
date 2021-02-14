@@ -48,5 +48,10 @@
 .text-14{
     font-size: 14px !important;
 }
+.border-bottom {
+    border-bottom: 1px solid #e9ecef;
+    width: 100%;
+    margin: 8px 0;
+}
 @page {
     size: a3; }
