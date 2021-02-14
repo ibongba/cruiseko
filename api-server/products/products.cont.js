@@ -157,8 +157,8 @@ exports.create = async(req,res,next)=>{
   var data = req.body;
   var {method = 'draft',price_date_list,events,addons} = data;
   var files = req.files || {}
-  console.log('data',data)
-  console.log('files',files)
+  // console.log('data',data)
+  // console.log('files',files)
   var transaction;
   var images_urls = []
   try{
@@ -208,8 +208,8 @@ exports.update = async(req,res,next)=>{
   var files = req.files || {}
   var images_urls = []
   var transaction;
-  console.log(data)
-  console.log('files',files)
+  // console.log(data)
+  // console.log('files',files)
   try{
     images_urls = await handleProductImages(files)
 

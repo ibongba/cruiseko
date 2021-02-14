@@ -1,7 +1,7 @@
 const { Product,sequelize,PriceDate,
   CompanyType,ProductBoat,Booking,BookingDetail,
   BookingBoat,BookingAddress,User,ProductAddon,BookingAddon,
-  PriceCompanyType,PriceDateDetail, Boat, BoatCategory} = require('../db')
+  PriceCompanyType,PriceDateDetail, Boat, BoatCategory,TransferSlip} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
@@ -83,10 +83,14 @@ exports.getOne = async(req,res,next)=>{
       {model : BookingBoat ,include : boat_inc},
       {model : BookingAddon ,include : addon_inc},
       {model : User},
-      {model : BookingAddress}
+      {model : BookingAddress},
+      {model : TransferSlip,as :'slips'}
+    ]
+    const order = [
+      [{model:TransferSlip,as:'slips' },'createdAt','desc']
     ]
 
-    const booking = await Booking.findOne({where : {id},include})
+    const booking = await Booking.findOne({where : {id},include,order})
     res.json(booking)
   } 
   catch(err){
@@ -287,8 +291,26 @@ exports.create = async(req,res,next)=>{
 exports.update = async(req,res,next)=>{
   var data = req.body;
   const id  = req.params.id;
+  var {method,adult,children,status,payment_type,payment_status} = data
   try{
+    if(method === 'detail'){
+      var tmp = {}
+      if(adult && children){
+        tmp = {adult,children ,total_person : parseInt(adult) + parseInt(children)}
+      }
+      if(status ){
+        tmp.status = status
+      }
+      if(payment_status && payment_type){
+        tmp.payment_status = payment_status
+        tmp.payment_date = new Date();
+        tmp.payment_type = payment_type
+      }
 
+      await Booking.update(tmp,{where : {id}})
+    }
+
+    res.json({success : true})
   }
   catch(err){
     next(err);
@@ -323,7 +345,7 @@ exports.checkAvailableBoat = async(req,res,next)=>{
     },attributes:['boat_id','amount'] ,raw:true})
 
     const unavailable_boat = ua_boat.reduce((total,item) => total+item.amount ,0 )
-    console.log('Unavailable Boat',unavailable_boat)
+    // console.log('Unavailable Boat',unavailable_boat)
     const available_boat = boat.amount - unavailable_boat;
 
     res.json({success:true,available_boat})

@@ -236,3 +236,15 @@ export const calDuration = (start_time,end_time)=>{
   if(hour_end == 0) hour_end = parseInt(hour_end) + 24
   return  Math.abs((parseInt(hour_end)*60 +  parseInt(min_end)) - (parseInt(hour_start)*60 +  parseInt(min_start)))  / 60
 }
+
+export const isCancel = (booking) =>{
+  if(!booking) return true;
+
+
+  const start_date = new Date(booking.start_date)
+  const now = new Date();
+  if(now >= start_date) return true;
+
+  return false
+
+}
