@@ -6,11 +6,13 @@ import api from '../../../utils/api-admin'
 const Dialog = ({show, onHide, size, bookings}) => {
   const {slips} = bookings;
   const [modalSuccess, setModalSuccess] = useState(false);
+  
 
   const handleSave = (event) => {
-    event.preventDefault()
-    const data = new FormData(event.target)
+    event.preventDefault();
     var id = slips[0]?.id;
+    var data = new FormData(event.target)
+    data.append('booking_id', bookings.id);
 
     api.updateBookingSlip(id, data)
     .then(res=>{
