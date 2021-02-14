@@ -31,7 +31,8 @@ const Layout = (props) => {
         <link href="/template/css/blog.css" rel="stylesheet" />
         <link href="/css/custom.css" rel="stylesheet" />
         <link href="/css/content-styles.css" rel="stylesheet" />
-
+        <link href="/backend_css/css/date_picker.css" rel="stylesheet" />
+        <link href="/backend_css/css/datetime.css" rel="stylesheet" />
       
         <script src="/template/js/jquery-3.5.1.min.js"></script>
         <script src="/template/js/bootstrap.bundle.min.js"></script>
