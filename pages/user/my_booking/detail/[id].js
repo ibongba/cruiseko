@@ -9,6 +9,13 @@ import UserBooking from '../../../../components/backend/booking/UserBooking';
 import Link from 'next/link';
 import AddReview from '../../../../components/frontend/product_detail/AddReview';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
+import {isCancel} from '../../../../utils/packageHelper'
+import dynamic from 'next/dynamic'
+
+const Paypal = dynamic(
+  () => import('../../../../components/widget/Paypal'),
+  { ssr: false }
+)
 
 const Index = (props) => {
   const [bookings, setBooking] = useState();
@@ -63,6 +70,11 @@ const Index = (props) => {
     })
   }
 
+  const onPaypalSuccess = ()=>{
+    Router.push('/order-success')
+    // alert('success')
+  }
+
 
   // console.log(check);
 
@@ -101,6 +113,21 @@ const Index = (props) => {
                     <Summary data={bookings} />
                   </div>
                 </div>
+
+                {!!bookings && bookings.payment_status == 1 && !isCancel(bookings) && (
+                  <div className="row justify-content-center mt-4">
+                    <div className="col-12 col-md-8 col-lg-4">
+                    <Paypal   
+                    onPaypalSuccess={onPaypalSuccess} 
+                    booking={bookings}
+                    />
+                    </div>
+                  </div>
+                  
+                
+
+                )}
+                
                 {
                   check.can_review ? (
                     <>

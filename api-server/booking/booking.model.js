@@ -50,6 +50,11 @@ module.exports = (sequelize, type) => {
       allowNull : false,
       defaultValue : 0
     },
+    // status : {
+    //   type : type.INTEGER,
+    //   allowNull : false,
+    //   defaultValue : 0
+    // },
     payment_status : type.INTEGER,
     payment_date : type.DATE,
     start_date : type.DATE,
@@ -70,6 +75,7 @@ module.exports = (sequelize, type) => {
     Booking.hasMany(models.BookingAddon,{foreignKey : 'booking_id',constraints: false})
     Booking.hasOne(models.BookingAddress,{foreignKey : 'booking_id',constraints: false})
     Booking.belongsTo(models.User,{foreignKey : 'user_id',constraints: false})
+    Booking.hasMany(models.TransferSlip,{foreignKey : 'booking_id',as : 'slips',constraints: false})
   };
   return Booking
 }
