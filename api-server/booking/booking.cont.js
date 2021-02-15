@@ -188,7 +188,8 @@ exports.create = async(req,res,next)=>{
     if(addons && addons.length){
       addons_dt = await ProductAddon.findAll({where : {id : addons.map(val => val.id) },raw:true})
       addons_dt = addons_dt.map(val => {
-        const quantity = addons.find(item =>  item.id === val.id)?.quantity || 1
+        const item = addons.find(item =>  item.id === val.id)
+        const quantity = item ? item.quantity : 1
         return {...val,quantity}
       })
       total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*current.quantity  , 0)
