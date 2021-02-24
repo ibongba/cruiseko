@@ -642,11 +642,11 @@ span.nav-link-text {
 .panel-dropdown {
   position: relative;
   text-align: left;
-  padding: 14px;
-  border-radius: 3px;
+  padding: 9px;
+  border-radius: .25rem;
   background-color: #FFF;
   border: 2px solid #eee;
-  
+  display: inline-table;
 }
 .panel-dropdown:nth-child(1) {
   margin-right: 16px;
