@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
   
 const SelectTime = (props) => {
-  const {active, setActive, onTimeChange, value, name, isBackend = true} = props;
+  const {active, setActive, onTimeChange, value, name, isBackend = false} = props;
   const [hour, setHour] = useState('00');
   const [minute, setMinute] = useState('00');
 
