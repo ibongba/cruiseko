@@ -655,20 +655,20 @@ span.nav-link-text {
   margin-left: 16px;
 }
 .select-time {
-  width: 64px;
+  width: 80px;
   border-radius: 16px;
   background-color: #66676b;
   color: #fff;
   display: inline-block;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
-  line-height: 18px;
+  line-height: 24px;
   text-align: center;
   position: relative;
   top: 0;
   left: 2px;
-  height: 18px;
+  height: 24px;
 }
 .panel-dropdown .panel-dropdown-content.time {
   padding: 0 15px;
