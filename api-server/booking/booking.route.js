@@ -28,6 +28,7 @@ router.delete('/slip/:sid',slip.delete)
 router.get('/',booking.getAll)
 
 router.post('/',booking.create)
+router.post('/by-admin',booking.createByAdmin)
 router.get('/:id',booking.getOne)
 router.put('/:id',booking.update)
 // router.delete('/:id',com.delete)

@@ -11,7 +11,7 @@ module.exports = (sequelize, type) => {
     // },
     user_id : {
       type: type.STRING(40),
-      allowNull : false
+      allowNull : true
 
     },
     // user_company_type_name : type.STRING,
@@ -62,6 +62,11 @@ module.exports = (sequelize, type) => {
     //CREDIT, TRANSFER
     payment_type : type.STRING,
     trasaction_id : type.STRING,
+    booking_admin_id : type.INTEGER,
+    booking_by : {
+      type : type.STRING,
+      defaultValue : 'user'
+    }
     
   },
   {
@@ -75,6 +80,7 @@ module.exports = (sequelize, type) => {
     Booking.hasMany(models.BookingAddon,{foreignKey : 'booking_id',constraints: false})
     Booking.hasOne(models.BookingAddress,{foreignKey : 'booking_id',constraints: false})
     Booking.belongsTo(models.User,{foreignKey : 'user_id',constraints: false})
+    Booking.belongsTo(models.Admin,{foreignKey : 'booking_admin_id',constraints: false})
     Booking.hasMany(models.TransferSlip,{foreignKey : 'booking_id',as : 'slips',constraints: false})
   };
   return Booking

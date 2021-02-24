@@ -4,8 +4,12 @@ const { Op ,QueryTypes} = require('sequelize');
 const base_domain = process.env.URL
 
 
+function pad(num,size){
+    return num.toString().padStart(size,'0')
+}
+
 module.exports = {
-    pad : (num,size) => num.toString().padStart(size,'0'),
+    pad ,
 
     genBookingId : async () =>{
         //2021010800001
