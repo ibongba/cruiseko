@@ -677,3 +677,75 @@ span.nav-link-text {
   width: 100px;
   display: inline-block;
 }
+.checkboxes label {
+  color: #999;
+}
+.container_check {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.8;
+  margin-bottom: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container_check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.container_check .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #d2d8dd;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.box-addon .plus, .box-addon .minus {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.box-addon .plus.disabled i, .box-addon .minus.disabled i {
+    color: #eee;
+}
+.box-addon .number {
+  width: 32px;
+  display: inline-block;
+  text-align: center;
+}
+.box-addon {
+  margin-right: 16px;
+}
+.chk-price {
+  width: 32px;
+  display: inline-block;
+  text-align: right;
+}
+.box-adddd {
+  border-radius: 8px;
+  background-color: #eee;
+  padding: 16px;
+}
+.font-24px {
+  font-size: 24px;
+  font-weight: 500;
+}
