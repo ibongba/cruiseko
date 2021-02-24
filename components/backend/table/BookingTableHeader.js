@@ -30,7 +30,7 @@ const FilterComponent = ({ filterText, onFilter, onClear, placeholder,
           onChange={(e)=> {showstartDate(e)}}
           value={startDate ? startDate : ''}
           isValidDate={validStartDate}
-          inputProps={{ name: 'start_date', required : true, autoComplete : 'off' }} />
+          inputProps={{ name: 'start_date', required : true, autoComplete : 'off', placeholder: 'Start Date' }} />
         </div>
       </div>
       <div className="col-lg-3 col-md-6 col-12">
@@ -40,7 +40,7 @@ const FilterComponent = ({ filterText, onFilter, onClear, placeholder,
           timeFormat={false}
           onChange={(e)=> {showendDate(e)}}
           value={endDate ? endDate : ''}
-          inputProps={{ name: 'end_date', required : true, autoComplete : 'off' }}
+          inputProps={{ name: 'end_date', required : true, autoComplete : 'off', placeholder: 'End Date' }}
           isValidDate={ valid }  />
         </div>
       </div>
