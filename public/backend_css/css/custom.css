@@ -622,3 +622,20 @@ span.nav-link-text {
   display: flex;
   cursor: move;
 }
+.btn-manage {
+  width: auto !important;
+  min-width: 0 !important;
+  border-radius: 10px !important;
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+  height: 32px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+.btn-manage:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
