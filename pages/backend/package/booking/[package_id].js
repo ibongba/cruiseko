@@ -1,15 +1,15 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import { useRouter } from 'next/router';
-import api from '../../../../utils/api-admin';
+import BookingAddress from '../../../../components/backend/package_booking/BookingAddress';
+import BookingDate from '../../../../components/backend/package_booking/BookingDate';
+import Checkbox from '../../../../components/widget/Checkbox';
 import InputLabel from '../../../../components/widget/InputLabel';
-import {toDateISO} from '../../../../utils/tools'
-import Link from 'next/link'
-import Checkbox from '../../../../components/widget/Checkbox'
 import SelectLabel from '../../../../components/widget/SelectLabel';
+import api from '../../../../utils/api-admin';
+import { toDateISO } from '../../../../utils/tools';
 
-import BookingDate from '../../../../components/backend/package_booking/BookingDate'
-import BookingAddress from '../../../../components/backend/package_booking/BookingAddress'
 
 
 
@@ -179,7 +179,7 @@ const Index = (props) => {
                 </div>
               </div>
 
-              
+
               {
                 (packages.products_addons && packages.products_addons.length > 0) ? (
                   <div className="row mt-4">
