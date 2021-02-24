@@ -1,7 +1,10 @@
-import React from 'react';
-  
+import React, { useRef, useState } from 'react';
+import { Overlay, Tooltip } from 'react-bootstrap';
+
 const Checkbox = (props) => {
-  const {value1,value2,onChange,name='',onAmountAddonChange,quantity,checked} = props;
+  const {value1,value2,onChange,name='',onAmountAddonChange,quantity,checked, description} = props;
+  const target = useRef(null);
+  const [show, setShow] = useState(false);
 
 
   const onAmountChange = (type)=>{
@@ -20,14 +23,21 @@ const Checkbox = (props) => {
 
   return (
     <>
-      <div class="clearfix">
-        <div class="checkboxes float-left w-100 d-flex justify-content-between">
-          <label class="container_check">
+      <div className="clearfix">
+        <div className="checkboxes float-left w-100 d-flex justify-content-between">
+          <label className="container_check">
             <input type="checkbox" onChange={onChange} name={name} checked={checked}/>
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
             <div className="">
-              <label>{value1}</label>
+              <label>{value1} <i className="fas fa-info-circle curser-pointer" ref={target} onClick={() => setShow(!show)}></i></label>
             </div>
+            <Overlay target={target.current} show={show} placement="right">
+              {(props) => (
+                <Tooltip id="overlay-example" {...props}>
+                  {description ? description : 'No Description'}
+                </Tooltip>
+              )}
+            </Overlay>
           </label>
           <div className="d-flex">
             <div className="box-addon">

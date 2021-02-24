@@ -195,7 +195,7 @@ const Index = (props) => {
                             value2={parseInt(val.price) } 
                             onChange={onAddonChange} 
                             quantity={state.addons.find(item => item.id == val.id)?.quantity || 1}
-                            
+                            description={val.description}
                             onAmountAddonChange={onAmountAddonChange} />
                           )
                         }

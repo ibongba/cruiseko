@@ -781,4 +781,6 @@ span.nav-link-text {
   font-size: 24px;
   font-weight: 500;
 }
-
+.curser-pointer {
+  cursor: pointer;
+}

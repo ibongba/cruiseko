@@ -716,6 +716,9 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
   left: 0;
   z-index: -1;
 }
+.curser-pointer {
+  cursor: pointer;
+}
 /* .hero-bg {
   
   animation: pop-in 6s 0.3s cubic-bezier(0, 0.5, 0, 1) forwards;
