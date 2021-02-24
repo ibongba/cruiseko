@@ -14,15 +14,15 @@ const Dialog = ({show, onHide, size, bookings, getBookingOne}) => {
     const data = new FormData(event.target);
     alert(booking_id);
 
-    // api.updateBooking(booking_id, data)
-    // .then(res=>{
-    //   const data = res.data;
-    //   setModalSuccess(true);
-    //   getBookingOne();
-    // })
-    // .catch(err => {
-    //   console.log(err.response);
-    // })
+    api.updateBooking(booking_id, data)
+    .then(res=>{
+      const data = res.data;
+      setModalSuccess(true);
+      getBookingOne();
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
   
 
