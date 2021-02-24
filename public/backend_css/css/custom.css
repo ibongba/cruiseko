@@ -645,7 +645,7 @@ span.nav-link-text {
   padding: 9px;
   border-radius: .25rem;
   background-color: #FFF;
-  border: 2px solid #eee;
+  border: 1px solid #ced4da;
   display: inline-table;
 }
 .panel-dropdown:nth-child(1) {
