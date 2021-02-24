@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
 import { useRouter } from 'next/router';
 import api from '../../../../utils/api-admin';
-import Datetime from 'react-datetime';
 import InputLabel from '../../../../components/widget/InputLabel';
-import SelectTime from '../../../../components/widget/SelectTime'
 import {toDateISO} from '../../../../utils/tools'
-import BookingAddress from '../../../../components/backend/package/BookingAddress'
 import Link from 'next/link'
 import Checkbox from '../../../../components/widget/Checkbox'
 import SelectLabel from '../../../../components/widget/SelectLabel';
+
+import BookingDate from '../../../../components/backend/package_booking/BookingDate'
+import BookingAddress from '../../../../components/backend/package_booking/BookingAddress'
+
+
 
 const Index = (props) => {
 
@@ -146,32 +148,12 @@ const Index = (props) => {
                   <h5>Package Name : {packages.name}</h5>
                 </div>
               </div>
-              <div className="row mt-4">
-                <div className="col-3">
-                  <div className="form-group">
-                    <label>Start Date</label>
-                    <Datetime 
-                    dateFormat="YYYY-MM-DD" 
-                    timeFormat={false}
-                    onChange={(e)=> {showstartDate(e)}}
-                    value={startDate ? startDate : ''}
-                    inputProps={{ name: 'start_date', required : true, autoComplete : 'off' }} />
-                  </div>
-                </div>
-                {
-                  is_boat ? (
-                    <div className="col-6">
-                      <label>Start Time - End Time</label>
-                      <div className="box_detail booking">
-                        <div className="d-flex">
-                          <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} value={state.start_time} name={'start_time'} />
-                          <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} value={state.end_time} name={'end_time'} />
-                        </div>
-                      </div>
-                    </div>
-                  ) : null
-                }
+              <div>
+                <BookingDate startDate={startDate} showstartDate={showstartDate}
+                activeFrom={activeFrom} setActiveFrom={setActiveFrom} onTimeChange={onTimeChange}
+                activeTo={activeTo} setActiveTo={setActiveTo} state={state} is_boat={is_boat} />
               </div>
+              
               <div className="row mt-3">
                 <div className="col-3">
                   <SelectLabel 
@@ -196,6 +178,8 @@ const Index = (props) => {
                   labelName="Childrens " iconProps={{className : 'fa icon icon-home'}} />
                 </div>
               </div>
+
+              
               {
                 (packages.products_addons && packages.products_addons.length > 0) ? (
                   <div className="row mt-4">
