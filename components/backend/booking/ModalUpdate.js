@@ -12,7 +12,7 @@ const Dialog = ({show, onHide, size, bookings, getBookingOne}) => {
     event.preventDefault();
     var booking_id = bookings.id;
     const data = new FormData(event.target);
-    alert(booking_id);
+    // alert(booking_id);
 
     api.updateBooking(booking_id, data)
     .then(res=>{
