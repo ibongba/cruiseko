@@ -50,12 +50,14 @@ const Index = (props) => {
                   <h4>Booking Details</h4>
                   <div className="ml-4">
                     {
+                    
+                    bookings.payment_status == 2 ? 
+                    <span className="text-success">(Success)</span> :
                     isCancel(bookings) ? 
                     <span className="text-danger">(Cancel)</span> :
-                    bookings.payment_status == 1 ? 
-                    <span className="text-warning">(Pending)</span> : 
+                    <span className="text-warning">(Pending)</span> 
                     
-                    <span className="text-success">(Success)</span>
+                    
                     }
                     </div>
                 </div>
