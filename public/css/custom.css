@@ -701,6 +701,10 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
   height: 80px !important;
   border-radius: 4px !important;
 }
+.box-bookbank {
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
