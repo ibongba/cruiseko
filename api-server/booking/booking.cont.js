@@ -293,6 +293,7 @@ exports.update = async(req,res,next)=>{
   var data = req.body;
   const id  = req.params.id;
   var {method,adult,children,status,payment_type,payment_status} = data
+  // var transaction;
   try{
     if(method === 'detail'){
       var tmp = {}
@@ -312,9 +313,14 @@ exports.update = async(req,res,next)=>{
     }
 
     res.json({success : true})
+    // transaction = await sequelize.transaction()
+
+    
+    // await transaction.commit()
   }
   catch(err){
     next(err);
+    // if(transaction) await transaction.rollback()
   }
 }
 
