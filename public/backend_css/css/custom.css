@@ -646,7 +646,13 @@ span.nav-link-text {
   border-radius: 3px;
   background-color: #FFF;
   border: 2px solid #eee;
+  
+}
+.panel-dropdown:nth-child(1) {
   margin-right: 16px;
+}
+.panel-dropdown:nth-child(2) {
+  margin-left: 16px;
 }
 .select-time {
   width: 64px;
