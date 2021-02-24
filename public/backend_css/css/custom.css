@@ -669,6 +669,7 @@ span.nav-link-text {
   top: 0;
   left: 2px;
   height: 24px;
+  cursor: pointer;
 }
 .panel-dropdown .panel-dropdown-content.time {
   padding: 0 15px;

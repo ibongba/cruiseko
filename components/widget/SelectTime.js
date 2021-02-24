@@ -52,7 +52,7 @@ const SelectTime = (props) => {
           }
          
         </div>
-        <div className="panel-dropdown-content time right">
+        <div className={`panel-dropdown-content time right ${isBackend ? (active ? '' : 'd-none') : ''}`}>
           <div className="select-option-time">
             <label>Hour</label>
             <select className="form-control" value={hour} onChange={(e) => handleChange(e, 'hour')}>
