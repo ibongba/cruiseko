@@ -38,7 +38,7 @@ const SelectTime = (props) => {
   return (
     <>
       <div className={`panel-dropdown w-50 ${active ? 'active' : ''}`}>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between" onClick={isBackend ? () => setActive(!active) : null}>
           <a onClick={() => setActive(!active)}><span className="select-time">{hour}:{minute}</span></a>
           {
             isBackend ? (
