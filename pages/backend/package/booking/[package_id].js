@@ -204,10 +204,7 @@ const Index = (props) => {
                   </div>
                 ) : null
               }
-              
-              <div>
-                <BookingAddress />
-              </div>
+
               <div className="row mt-4">
                 <div className="col-12">
                   <div className="my-2">
@@ -215,6 +212,11 @@ const Index = (props) => {
                   </div>
                 </div>
               </div>
+              
+              <div>
+                <BookingAddress />
+              </div>
+              
               <div className="row mt-4">
                 <div className="col-12">
                   <Link href={`/backend/package/edit/[d]`} as={`/backend/package/edit/${package_id}`}>
