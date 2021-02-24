@@ -16,6 +16,7 @@ import { toPriceListState } from '../../../../utils/packageHelper';
 import AddAddons from '../../../../components/backend/package/AddAddons';
 import ShowAddon from '../../../../components/backend/package/ShowAddons';
 import AddonMain from '../../../../components/backend/package/AddonMain';
+import Link from 'next/link'
 
 const Index = (props) => {
   const [show, setShow] = useState(true);
@@ -149,6 +150,9 @@ const Index = (props) => {
           </div>
           <div className="">
             <div className="text-right">
+              <Link href={`/backend/package/booking/[package_id]`} as={`/backend/package/booking/${id}`}>
+                <a><button type="button" className="btn btn-warning mr-3">Booking</button></a>
+              </Link>
               <LoadingButton type="button" 
                 className="btn-outline-primary"  
                 loading={saving}

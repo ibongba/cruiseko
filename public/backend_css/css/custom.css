@@ -639,3 +639,41 @@ span.nav-link-text {
   background-color: #007bff;
   border-color: #007bff;
 }
+.panel-dropdown {
+  position: relative;
+  text-align: left;
+  padding: 14px;
+  border-radius: 3px;
+  background-color: #FFF;
+  border: 2px solid #eee;
+  margin-right: 16px;
+}
+.select-time {
+  width: 64px;
+  border-radius: 16px;
+  background-color: #66676b;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  line-height: 18px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 2px;
+  height: 18px;
+}
+.panel-dropdown .panel-dropdown-content.time {
+  padding: 0 15px;
+}
+.select-option-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+.select-option-time select {
+  width: 100px;
+  display: inline-block;
+}
