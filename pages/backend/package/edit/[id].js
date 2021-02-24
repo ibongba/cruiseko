@@ -150,9 +150,15 @@ const Index = (props) => {
           </div>
           <div className="">
             <div className="text-right">
-              <Link href={`/backend/package/booking/[package_id]`} as={`/backend/package/booking/${id}`}>
-                <a><button type="button" className="btn btn-warning mr-3">Booking</button></a>
-              </Link>
+              {
+              pkg?.publish_status == 1 ? (
+                <Link href={`/backend/package/booking/[package_id]`} as={`/backend/package/booking/${id}`}>
+                  <a><button type="button" className="btn btn-warning mr-3">Booking</button></a>
+                </Link>
+              )
+              : <button type="button" disabled className="btn btn-warning mr-3 disabled">Booking</button>
+              }
+              
               <LoadingButton type="button" 
                 className="btn-outline-primary"  
                 loading={saving}

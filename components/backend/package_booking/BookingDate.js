@@ -24,8 +24,18 @@ const BookingDate = ({startDate, showstartDate, activeFrom, setActiveFrom, onTim
               <label>Start Time - End Time</label>
               <div className="box_detail booking">
                 <div className="d-flex">
-                  <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} value={state.start_time} name={'start_time'} />
-                  <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} value={state.end_time} name={'end_time'} />
+                  <SelectTime active={activeFrom} 
+                  isBackend={true}
+                  setActive={setActiveFrom} 
+                  onTimeChange={onTimeChange} 
+                  value={state.start_time} 
+                  name={'start_time'} />
+                  <SelectTime active={activeTo} 
+                  isBackend={true}
+                  setActive={setActiveTo} 
+                  onTimeChange={onTimeChange} 
+                  value={state.end_time} 
+                  name={'end_time'} />
                 </div>
               </div>
             </div>
