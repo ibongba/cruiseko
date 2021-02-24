@@ -46,8 +46,19 @@ const Dialog = (props) => {
             <div className="small-dialog-header">
               <h3>Tranfer Slip</h3>
             </div>
+          </div>
+          <div className="col-12">
             <form className="px-3" id="login-form-modal" onSubmit={handleSubmit}>
               <div>
+                <div className="mb-3">
+                  <div className="d-flex p-3 align-items-center box-bookbank">
+                    <img src="/images/Kb.png" className="" />
+                    <div className="ml-4">
+                      <h5 className="mb-0">Kasikorn Bank</h5>
+                      <p className="mb-0">Account Number : <font className="text-account">715-2-61098-4</font></p>
+                    </div>
+                  </div>
+                </div>
                 <div className="form-group mb-1">
                   <label>Tranfer Slip</label>
                   <ImageBoxBackend  _name="image" _id="image" chkImg={chkImg} required={true} classBox={'box-slip'} />
@@ -116,8 +127,8 @@ const Dialog = (props) => {
                 <button className="btn btn-primary w-100">Pay Now</button>
               </div>
             </form>
-            <button title="Close (Esc)" type="button" className="mfp-close" onClick={onHide}></button>
           </div>
+          <button title="Close (Esc)" type="button" className="mfp-close mt-2" onClick={onHide}></button>
         </div>
       </Modal.Body>
     </Modal>  
