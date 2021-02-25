@@ -32,11 +32,13 @@ const Banner = (props) => {
 
   // console.log('home banner', data);
 
- 
+  const background = data?.banner ? data.banner : '../img/home_section_1.jpg'
   return (
     data ? (
       <>
-        <section className="hero_single version_2">
+        <section className="hero_single version_2 start_bg_zoom" 
+        /* style={{backgroundSize : 'cover',background : `url(${background}) center center no-repeat`}} */ >
+          <div className="hero-bg" style={{background : `url(${background}) center center no-repeat`,backgroundSize : 'cover'}}></div>
           <div className="wrapper">
             <div className="container">
               <h3>Book unique experiences</h3>
@@ -47,14 +49,14 @@ const Banner = (props) => {
               setType={setType} type={type} />
             </div>
           </div>
-          <style jsx>
+          {/* <style jsx>
           {`
             .hero_single.version_2:before {
-              background: url(${data.banner ? data.banner : '../img/home_section_1.jpg'}) center center no-repeat;
+              background: url(${data?.banner ? data.banner : '../img/home_section_1.jpg'}) center center no-repeat;
               background-size: cover;
             }
           `}
-          </style>
+          </style> */}
         </section>
       </>
     ) : null

@@ -7,16 +7,19 @@ import Summary from '../../../../components/backend/booking/Summary'
 import Detail from '../../../../components/backend/booking/Detail';
 import UserBooking from '../../../../components/backend/booking/UserBooking';
 import ModalSlip from '../../../../components/backend/booking/ModalSlip';
+import ModalUpdate from '../../../../components/backend/booking/ModalUpdate';
 import {isCancel} from '../../../../utils/packageHelper'
 
 const Index = (props) => {
   const [bookings, setBooking] = useState();
   const [show, setShow] = useState();
-  const router = useRouter()
+
+  const [modal, setModal] = useState();
+
+  const router = useRouter();
   const {id} = router.query;
 
-  useEffect(() => {
-    if(!id) return;
+  const getBookingOne = () => {
     api.getBookingOne(id)
     .then(res => {
       setBooking(res.data)
@@ -25,12 +28,15 @@ const Index = (props) => {
     .catch(err=>{
       console.log(err.response || err)
     })
+  }
 
+  useEffect(() => {
+    if(!id) return;
+    getBookingOne();
   }, [id]);
 
   
-
-  // console.log(bookings);
+   // console.log(bookings);
 
 
   return (
@@ -44,12 +50,14 @@ const Index = (props) => {
                   <h4>Booking Details</h4>
                   <div className="ml-4">
                     {
+                    
+                    bookings.payment_status == 2 ? 
+                    <span className="text-success">(Success)</span> :
                     isCancel(bookings) ? 
                     <span className="text-danger">(Cancel)</span> :
-                    bookings.payment_status == 1 ? 
-                    <span className="text-warning">(Pending)</span> : 
+                    <span className="text-warning">(Pending)</span> 
                     
-                    <span className="text-success">(Success)</span>
+                    
                     }
                     </div>
                 </div>
@@ -65,7 +73,7 @@ const Index = (props) => {
                     <Detail data={bookings} />
                   </div>
                   <div className="mt-4">
-                    <UserBooking data={bookings} />
+                    <UserBooking data={bookings} setModal={setModal} />
                   </div>
                 </div>
                 <div className="col-lg-3 col-12">
@@ -83,6 +91,9 @@ const Index = (props) => {
               </div>
               <ModalSlip show={show}
                 size="md" onHide={() => setShow(false)} bookings={bookings} />
+
+              <ModalUpdate show={modal}
+                size="lg" onHide={() => setModal(false)} bookings={bookings} getBookingOne={getBookingOne} />
             </>
           ) : null
         }

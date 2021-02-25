@@ -2268,7 +2268,7 @@ video {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.8);
 }
-.hero_single.start_bg_zoom:before {
+/* .hero_single.start_bg_zoom:before {
   animation: pop-in 6s 0.3s cubic-bezier(0, 0.5, 0, 1) forwards;
   content: "";
   opacity: 0;
@@ -2278,7 +2278,7 @@ video {
   bottom: 0;
   left: 0;
   z-index: -1;
-}
+} */
 .hero_single .wrapper {
   display: flex;
   flex-direction: column;
@@ -2329,13 +2329,13 @@ video {
 .hero_single.version_2 {
   height: 620px;
 }
-.hero_single.version_2:before {
+/* .hero_single.version_2:before {
   background: url(../img/home_section_1.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+} */
 .hero_single.version_2 .wrapper {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.45);

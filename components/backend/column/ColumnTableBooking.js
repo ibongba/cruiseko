@@ -29,12 +29,14 @@ const ColumsBody = (props) => {
       selector: 'payment_status',
       sortable: true,
       cell : row => (
-        isCancel(row) ? 
-        <span className="text-danger">Cancel</span> :
-        row.payment_status == 1 ? 
-        <span className="text-warning">Pending</span> : 
         
-        <span className="text-success">Success</span>
+        row.payment_status == 2 ? 
+        <span className="text-success">Success</span> : 
+        isCancel(row) ? 
+        <span className="text-danger">Cancel</span> : 
+        <span className="text-warning">Pending</span> 
+        
+        
       )
     },
     {

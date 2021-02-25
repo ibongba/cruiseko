@@ -622,3 +622,165 @@ span.nav-link-text {
   display: flex;
   cursor: move;
 }
+.btn-manage {
+  width: auto !important;
+  min-width: 0 !important;
+  border-radius: 10px !important;
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+  height: 32px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+.btn-manage:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.panel-dropdown {
+  position: relative;
+  text-align: left;
+  padding: 9px;
+  border-radius: .25rem;
+  background-color: #FFF;
+  border: 1px solid #ced4da;
+  display: inline-table;
+}
+.panel-dropdown:nth-child(1) {
+  margin-right: 16px;
+}
+.panel-dropdown:nth-child(2) {
+  margin-left: 16px;
+}
+.select-time {
+  width: 80px;
+  border-radius: 16px;
+  background-color: #66676b;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  line-height: 24px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 2px;
+  height: 24px;
+  cursor: pointer;
+}
+.panel-dropdown .panel-dropdown-content.time {
+  padding: 0 15px;
+}
+.container_check input:checked ~ .checkmark {
+  background-color: #0054a6;
+  border: 1px solid transparent;
+}
+.container_check input:checked ~ .checkmark:after {
+  display: block;
+}
+.container_check .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(
+45deg
+);
+  -ms-transform: rotate(45deg);
+  transform: rotate(
+45deg
+);
+}
+.select-option-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+.select-option-time select {
+  width: 100px;
+  display: inline-block;
+}
+.checkboxes label {
+  color: #999;
+}
+.container_check {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.8;
+  margin-bottom: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container_check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.container_check .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #d2d8dd;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.box-addon .plus, .box-addon .minus {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.box-addon .plus.disabled i, .box-addon .minus.disabled i {
+    color: #eee;
+}
+.box-addon .number {
+  width: 32px;
+  display: inline-block;
+  text-align: center;
+}
+.box-addon {
+  margin-right: 16px;
+}
+.chk-price {
+  width: 32px;
+  display: inline-block;
+  text-align: right;
+}
+.box-adddd {
+  border-radius: 8px;
+  background-color: #fafafa;
+  padding: 16px;
+}
+.font-24px {
+  font-size: 24px;
+  font-weight: 500;
+}
+.curser-pointer {
+  cursor: pointer;
+}

@@ -111,9 +111,10 @@ export default {
 
 
     //Bookings
+    createBookingByAdmin : (data) => service.post(`/booking/by-admin`, data),
     getBooking : (params) => service.get(`/booking`, {params}),
     getBookingOne : (id) => service.get(`/booking/${id}`),
-
+    updateBooking : (id, data) => service.put(`/booking/${id}`, data),
 
 
     //Blog
@@ -161,5 +162,7 @@ export default {
 
     //Tranfer Slip
     updateBookingSlip : (id, data) => service.put(`/booking/slip/${id}`, data),
+
+    
 
 }

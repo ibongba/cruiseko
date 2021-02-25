@@ -2,8 +2,8 @@ import React, { useEffect, useState,memo } from 'react';
 import DataTable from 'react-data-table-component';
 import api from '../../../utils/api-admin';
 import ColumnTable from '../column/ColumnTableBooking';
-import SubHeaderComponent from './SubHeaderComponent';
-
+import SubHeaderComponent from './BookingTableHeader';
+import {toDateISO} from '../../../utils/tools'
 
 
 const TableBooking = memo((props) => {
@@ -17,6 +17,9 @@ const TableBooking = memo((props) => {
 
     params.page = pageNumber;
     params.limit = limit;
+
+    params.start_date = startDate ? toDateISO(startDate) : null;
+    params.end_date = endDate ? toDateISO(endDate) : null;
 
     if(sorting.orderby) params.orderby = sorting.orderby
     if(sorting.op) params.op = sorting.op
@@ -63,6 +66,40 @@ const TableBooking = memo((props) => {
 
   console.log(bookings);
 
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const showstartDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setStartDate(data);
+  }
+
+  const showendDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setEndDate(data);
+  }
+
+  const validStartDate = (current) => {
+    //var getStart = startDate;
+    let today = new Date();
+    return current <= today;
+  }
+
+  const valid = (current) => {
+    var getStart = startDate;
+    let today = new Date();
+    return current >= getStart && current <= today;
+  }
+
+  const handleSearch = () => {
+    fecthBooking();
+  }
+
+
   return (
     <>
       
@@ -84,6 +121,8 @@ const TableBooking = memo((props) => {
           <SubHeaderComponent 
             setResetPaginationToggle={setResetPaginationToggle} resetPaginationToggle={resetPaginationToggle} 
             setFilterText={setFilterText} filterText={filterText} placeholder={'Filter By Booking NO.'}
+            showstartDate={showstartDate} showendDate={showendDate} validStartDate={validStartDate} valid={valid}
+            startDate={startDate} endDate={endDate} handleSearch={handleSearch}
           />
         }
       />

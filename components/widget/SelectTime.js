@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
   
 const SelectTime = (props) => {
-  const {active, setActive, onTimeChange, value, name} = props;
+  const {active, setActive, onTimeChange, value, name, isBackend = false} = props;
   const [hour, setHour] = useState('00');
   const [minute, setMinute] = useState('00');
 
@@ -38,8 +38,21 @@ const SelectTime = (props) => {
   return (
     <>
       <div className={`panel-dropdown w-50 ${active ? 'active' : ''}`}>
-        <a onClick={() => setActive(!active)}><span className="select-time">{hour}:{minute}</span></a>
-        <div className="panel-dropdown-content time right">
+        <div className={`${isBackend ? "d-flex justify-content-between" : ''}`} onClick={isBackend ? () => setActive(!active) : null}>
+          <a onClick={() => setActive(!active)}><span className="select-time">{hour}:{minute}</span></a>
+          {
+            isBackend ? (
+              <>
+                {
+                  active ? (<i className="fas fa-chevron-up mt-2" onClick={() => setActive(!active)}></i>)
+                  : (<i className="fas fa-chevron-down mt-2" onClick={() => setActive(!active)}></i> )
+                }
+              </>
+            ) : null
+          }
+         
+        </div>
+        <div className={`panel-dropdown-content time right ${isBackend ? (active ? '' : 'd-none') : ''}`}>
           <div className="select-option-time">
             <label>Hour</label>
             <select className="form-control" value={hour} onChange={(e) => handleChange(e, 'hour')}>
