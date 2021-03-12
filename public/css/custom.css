@@ -302,7 +302,10 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
 }
 .grid ul li {
   padding: 0;
-  margin: -6px 0;
+  /* margin: -6px 0; */
+  width: 50%;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 .grid ul li figure {
   margin: 0;
@@ -311,8 +314,8 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
   cursor: pointer;
 }
 .magnific-gallery li {
-  max-width: 185px;
-  max-height: 120px;
+  max-width: 340px;
+  max-height: 340px;
 }
 figure:hover .caption-content i, figure:hover .caption-content p {
   color: #FFF;
@@ -530,7 +533,7 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   padding: 30px 15px;
 }
 .grid ul li figure img {
-  height: 110px !important;
+  /* height: 110px !important; */
   object-fit: cover !important; 
 }
 .cbp_tmtimeline > li .cbp_tmicon {
@@ -739,7 +742,12 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
     color: #FFF;
   } */
 }
-
+@media (min-width: 992px) and (max-width: 1199px){
+  .magnific-gallery li {
+    max-width: 280px;
+    max-height: 280px;
+  }
+}
 @media (max-width: 991px) {
   .nice-select.wide {
     margin-bottom: 5px;
@@ -752,6 +760,10 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
   }
   .custom-search-input-2 .select {
     border-right: unset !important;
+  }
+  .magnific-gallery li {
+    max-width: 300px;
+    max-height: 300px;
   }
 }
 @media (max-width: 767px) {
@@ -769,5 +781,9 @@ button.purchase.disabled, button.purchase.disabled:hover, button.purchase.disabl
   }
   .slick-next {
     right: -32px;
+  }
+  .magnific-gallery li {
+    max-width: 180px;
+    max-height: 180px;
   }
 }
