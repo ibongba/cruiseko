@@ -80,7 +80,6 @@ const Register = ({ t }) => {
           </aside>
         </div>
       </main>
-      <div className="end-content"></div>
     </Layout>
   )
 }

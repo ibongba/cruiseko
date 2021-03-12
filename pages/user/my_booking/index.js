@@ -50,7 +50,6 @@ const Login = ({ t }) => {
           </div>
         </aside>
       </div>
-      <div className="end-content"></div>
     </Layout>
   )
 }

@@ -144,7 +144,6 @@ const Index = (props) => {
           }
           </aside>
         </div>
-        <div className="end-content"></div>
         <SuccessDialog show={modalSuccess}
           text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}

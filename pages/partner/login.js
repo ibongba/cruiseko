@@ -45,7 +45,6 @@ const Login = ({ t }) => {
           </form>
         </aside>
       </div>
-      <div className="end-content"></div>
     </Layout>
   )
 }

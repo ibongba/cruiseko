@@ -188,7 +188,6 @@ const Home = (props) => {
 
 				</main>
 			</aside>
-      <div className="end-content"></div>
     </Layout>
   )
 }

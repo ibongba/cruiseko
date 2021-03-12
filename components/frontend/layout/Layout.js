@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import Header from './Header';
 import usescript from '../../../utils/UseScript'
-// import Footer from '../layout/Footer'
+import Footer from '../layout/Footer'
 
 const Layout = (props) => {
   const {title, loading, children, banner} = props;
@@ -33,6 +33,8 @@ const Layout = (props) => {
         <link href="/css/content-styles.css" rel="stylesheet" />
         <link href="/backend_css/css/date_picker.css" rel="stylesheet" />
         <link href="/backend_css/css/datetime.css" rel="stylesheet" />
+        
+        <link href="/css/footer.css" rel="stylesheet" />
       
         <script src="/template/js/jquery-3.5.1.min.js"></script>
         <script src="/template/js/bootstrap.bundle.min.js"></script>
@@ -55,7 +57,7 @@ const Layout = (props) => {
         {/* {loading && <Loading />} */}
         {children}
       </div>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }

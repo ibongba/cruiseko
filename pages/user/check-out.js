@@ -107,7 +107,6 @@ const Payment = (props) => {
           </form>
         </div>
       </main>
-      <div className="end-content"></div>
     </Layout>
   )
 }

@@ -1,0 +1,64 @@
+.Footer-copyrights {
+  background-color: #333;
+}
+section {
+  display: block;
+}
+section .Copyrights {
+  background-color: #333;
+  color: #999;
+}
+section .Copyrights {
+  line-height: 16px;
+  padding: 50px 0 10px;
+  text-align: center;
+}
+section .Copyrights--info {
+  margin: 0 0 5px;
+}
+section .Copyrights-brands {
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-top: 35px;
+  margin-bottom: 50px;
+}
+section .Copyrights-machine {
+  text-align: center;
+}
+small {
+  font-size: 80%;
+}
+.Footer-links {
+  background-color: #eee;
+}
+.LinksListGroup--vertical {
+  width: 25%;
+}
+section .LinksListLink-link:hover {
+  color: #5b5b5b;
+}
+.LinksListGroup-title {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.LinksListGroup .LinksListLink-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+.LinksListGroup {
+  vertical-align: top;
+}
+.Footer-links {
+  padding: 50px 0;
+  overflow: hidden;
+}
+.LinksListGroup {
+  display: inline-block;
+}

@@ -48,7 +48,6 @@ const Popular = ({ t }) => {
           </div>
         </main>
       </aside>
-      <div className="end-content"></div>
     </Layout>
   )
 }
